@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content%}
+
+<div class="col-lg">
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example3" class="table table-bordered table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead>
+                                <tr role="row">
+                                
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Academic Term</th>
+                                    
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Academic Term Name</th>
+                                   
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending">Status</th>   
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for acadamic in academic_term %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>{{ acadamic.term_start_date }} to {{  acadamic.term_end_end}}</td>
+                                    <td>{{ acadamic.name }}</td>
+                                    <td>
+                                        
+                                    {% if acadamic.status == 'Active' %}
+                                       <span class="badge bg-danger">{{acadamic.status}} </span>
+                                    {% else %}
+                                       <span class="badge bg-primary">{{acadamic.status}} </span>
+                                    {% endif %}   
+                                   </td>
+                                               
+                                    <td>
+                                        <a class="btn btn-sm btn-warning" 
+                                        href="{% url 'school:edit_academicterm' acadamic.id %}">Edit</a>
+                                        <a class="btn btn-sm btn-danger" href="{% url 'school:delete_academic_term' acadamic.id %}">Delete</a>
+                                    </td>
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg">
+        <div class="card  card-primary card-outline p-4 m-4">
+
+                <div class="card-header">
+                    <h3 class="profile-username text-center text-muted">SNACK REQUEST</h3>
+                    <ul class="list-group list-group-unbordered mb-3">
+                        <li class="list-group-item">
+                            <b>Snack Request Id.</b> <a class="float-right text-muted">{{order.id}}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Date</b> <a class="float-right text-muted">{{order.date}}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Status</b> <a class="float-right text-muted">
+                            {% if order.status == "pending" %}
+                              <span class="badge badge-pill badge-warning">{{ order.status }}</span>
+                            {% elif pvs.status == "approved" %}
+                              <span class="badge badge-pill badge-primary">{{ order.status }}</span>
+                           {% else %}
+                              <span class="badge badge-pill badge-danger">{{ order.status }}</span>
+                           {% endif %}
+
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Order ID</b> <a class="float-right text-muted">{{snack_order.id}}</a>
+                        </li>
+
+
+
+                    </ul>
+                    <div>
+                        {% for group in user.groups.all %} {% if group.name == 'principal' %}
+                                {% if order.status == 'Pending' %}
+                                   <a class="btn btn-sm  btn-outline-primary " href="{% url 'shop:approve_snack' order.id %}">Approve</a>
+                                   <a class="btn btn-sm  btn-outline-danger ml-4" href="{% url 'shop:cancel_snack' order.id %}">Cancel</a>
+                                {% else %}
+
+                                {% endif %}
+                            {% endif %}
+                            {% endfor %}
+
+
+
+
+                    </div>
+
+                </div>
+                <div class="card-body text-center">
+                    <table class="table table-striped table-sm" id="my_friends">
+                        <thead>
+                            <tr>
+                                <th>Student List</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in detail %}
+                            <tr>
+                                <td>{{item.student_name}}</td>
+
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                    {% if snack_order %}
+                    <br>
+                    <table class="table table-striped table-sm" id="my_friends">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Unit Price</th>
+                                    <th>Qty</th>
+                                    <th>Amount (GHC)</th>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in snack_order_detail %}
+                                <tr>
+                                    <td>{{item.product.name}}</td>
+                                    <td>{{item.unit_price}}</td>
+                                    <td>{{item.quantity}}</td>
+                                    <td>{{item.gross_price}}</td>
+
+
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+
+                                    <td></td>
+                                    <td></td>
+                                    <td><b>Sub Total</b></td>
+                                    <td><b>{{snack_order.gross_price}}</b> </td>
+
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td><b>VAT 0%</b></td>
+                                    <td><b>{{snack_order.vat}}</b></td>
+
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td><b>Total</b></td>
+                                    <td><b>{{snack_order.total_price}}</b></td>
+                                </tr>
+
+                                {% if order.money_balance > 0.00 %}
+
+                                {% endif %}
+
+
+
+                            </tbody>
+                        </table>
+                    {% endif %}
+                    <div class="form-row">
+                        <div class="col text-center">
+                            <a class="btn btn-outline-danger mt-2 ml-2" href="{% url 'shop:manage_snack' %}">Close </a>
+
+                        </div>
+                        <!--<div class="col text-center">-->
+                        <!--    <button id="print" onclick="printPageArea('printableArea')" >Print</button>-->
+                        <!--</div>-->
+
+                    </div>
+                </div>
+
+
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

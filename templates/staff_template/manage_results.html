@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content%}
+
+<div class="col-lg">
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            {% for group in user.groups.all %} {% if group.name == 'teacher' %}
+            <a class="btn btn-primary btn-sm mb-1" href="{% url 'school:create_results' %}">Create  Results</a>
+            {% endif %}
+            {% endfor %}
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table table-bordered table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead class="">
+                                <tr role="row">
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Academic Year</th>
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Academic Term Name</th>
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending">Class</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending">Result Date</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for acadamic in academic_term %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>{{ acadamic.session_year_id }}</td>
+                                    <td>{{ acadamic.term_year_id }}</td>
+                                    <td>{{ acadamic.class_id.class_name }}</td>
+                                    <td>{{ acadamic.created_at}}</td>
+
+
+
+                                    <td>
+                                       
+                                        {% for group in user.groups.all %} {% if group.name == 'parent' %}
+                                             <a class="btn btn-sm btn-primary" href="{% url 'school:stud_results' acadamic.id %}">View Results</a>
+                                        {% else %}
+                                            <a class="btn btn-sm btn-warning" href="{% url 'school:edit_results' acadamic.id %}">Edit</a>
+                                            <a class="btn btn-sm btn-danger" href="{% url 'school:delete_results' acadamic.id %}">Delete</a>
+                                            <a class="btn btn-sm btn-primary" href="{% url 'school:add_results' acadamic.id %}">Add Results</a>
+                                   
+                                            
+                                        {% endif %}
+                                    {% endfor %}
+                                            
+                                    </td>
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endblock %}

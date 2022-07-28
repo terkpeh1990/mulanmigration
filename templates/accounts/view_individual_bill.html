@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content%}
+<div class="row">
+    <div class="col-12">
+        <div class="card  card-infor card-outline p-4 m-4">
+
+            <div class="card-body">
+
+                <table class="table table-striped" id="my_friends">
+                    <thead>
+                        <tr>
+                            <th>
+                                <div class="text-center">
+
+                                    <img class="profile-user-img img-fluid img-circle" src=" {% static 'images/msac-logo.png' %}"
+                                            alt="User profile picture">
+                                </div>
+
+
+
+                                    <div class="col-sm-12 ">
+
+                                        <address class= "text-center text-muted" >
+                                            <h3 class="profile-username text-muted">Mulan Smart Activity Center</h3>
+                                            East Legon – Adjiringano gate road,<br>
+                                            Accra - Ghana.<br>
+                                            Phone: (233) 302985321<br>
+                                            Email: info@msac.edu.gh<br>
+                                        </address>
+                                    </div>
+                                    <h3 class="profile-username text-center">STUDENT BILL</h3>
+
+                                    <ul class="list-group list-group-unbordered mb-3">
+                                        <li class="list-group-item">payables
+                                            <b>Current Bill No.</b> <a class="float-right text-muted">{{bill.id }}</a>
+                                        </li>
+                                        <li class="list-group-item">payables
+                                            <b>Receivable Account No.</b> <a class="float-right text-muted">{{payables.id }}</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Student ID</b> <a class="float-right text-muted">{{bill.student_id.id}}</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Student Name</b> <a class="float-right text-muted">{{bill.student_id.Surname }} {{ bill.student_id.firstname}}</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Academic Year</b> <a class="float-right text-muted">{{bill.session_year_id.name}}</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Academic Term</b> <a class="float-right text-muted">{{bill.term_year_id.acadamic_terms.name}}</a>
+                                        </li>
+
+                                        <li class="list-group-item">
+                                            <b>Date</b> <a class="float-right text-muted">{{bill.bill_date}}</a>
+
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Discount Received</b> <a class="float-right text-muted">{{bill.bill.discount}}</a>
+
+                                        </li>
+
+                                    </ul>
+
+                            </th>
+
+
+                        </tr>
+                    </thead>
+
+                </table>
+                <table class="table table-striped text-center" id="my_friends">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Amount(GHC)</th>
+
+                            <!-- <th>Action</th> -->
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+
+                        {% for item in detail %}
+                        <tr>
+                            <td>{{item.description}}</td>
+                            <td>{{item.amount}}</td>
+
+
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td><b>Sub Total</b></td>
+                            <td><b>{{bill.amount}}</b> </td>
+
+                        </tr>
+
+
+
+
+
+                        <tr>
+
+                            <td><b>Total</b></td>
+                            <td><b>{{total}}</b> </td>
+
+                        </tr>
+
+
+
+
+
+
+                    </tbody>
+                </table>
+                <div class="row">
+
+
+
+
+
+                    <div class="col text-center ">
+
+                        <a class="btn btn-sm btn-outline-dark mt-2 ml-2" href="{% url 'accounts:student_account' payables.id %}">Close
+                        </a>
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+{% comment %} <script>
+    window.addEventListener("load", window.print());
+</script> {% endcomment %}
+
+
+{% endblock %}

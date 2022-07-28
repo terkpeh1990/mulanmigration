@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle" src=" {{students.profile_pic.url}}"
+                                alt="User profile picture">
+                        </div>
+
+                        <h3 class="profile-username text-center text-muted">{{students.Surname }} {{ students.firstname}}</h3>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Assigned Class</b> <a class="float-right text-muted">{{students.course_id}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Gender</b> <a class="float-right text-muted">{{students.gender}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Date of Birth</b> <a class="float-right text-muted">{{students.dob}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Place of Birth</b> <a class="float-right text-muted">{{students.place_of_birth}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Nationality</b> <a class="float-right text-muted">{{students.nationality}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Religion</b> <a class="float-right text-muted">{{students.religion}}</a>
+                            </li>
+                        </ul>
+                        <a class="btn btn-sm  btn-primary btn-block" href="{% url 'school:edit_staff' students.id %}">Edit Staff</a>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <!-- About Me Box -->
+                <div class="card card-primary card-outline">
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+            
+                        <strong><i class="fa fa-phone mr-1"></i> Mobile No.</strong>
+                        
+                        <p class="text-muted ml-4"> 
+                           {{ students.phone }}
+                        </p>
+                        <hr>
+
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+                        <p class="text-muted ml-3">{{students.residential_address}}</p>
+
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Suburb</strong>
+                        
+                        <p class="text-muted ml-3">{{students.suburb}}</p>
+                        
+                        <hr>
+                        <strong><i class="fas fa-map-marker mr-1"></i> Postal Address</strong>
+                        
+                        <p class="text-muted ml-3">{{students.postal_address}}</p>
+                    
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+
+            <div class="col-9 ">
+
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card card-primary card-outline">
+                           
+                            <div class="card-header ">
+                                <h3 class="card-title text-dark d-flex justify-content-center">Education History</h3>
+                                <a class="btn btn-sm btn-primary float-right" href="{% url 'school:add_profile_staff_education'  students.id%}">Add Education</a>  
+                            </div>
+                            <div class="card-body">
+                                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="example3" class="table table-bordered table-striped table-hover" role="grid"
+                                                aria-describedby="example2_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">School
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="Platform(s): activate to sort column ascending">Duration</th>
+                                                        
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="Engine version: activate to sort column ascending">Qualification
+                                                        </th>
+                                
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for education in student_education %}
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="sorting_1">{{education.schname}}</td>
+                                                        
+                                                        <td>{{education.startdate }} to {{ education.enddate}}</td>
+                                                        
+                                                        <td>{{education.qualification}}</td>
+                                
+                                                        <td>
+                                                    
+                                                            <a class="btn btn-sm btn-warning" href="{% url 'school:edit_staff_edu' education.id %}">Edit</a>
+                                                            <a class="btn btn-sm btn-danger"
+                                                                href="{% url 'school:delete_staff_education' education.id %}">Delete</a>
+                                                        </td>
+                                                    </tr>
+                                
+                                                    {% endfor %}
+                                
+                                                </tbody>
+                                                <tfoot>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card card-primary card-outline">
+                            <div class="card-header ">
+                                <h3 class="card-title">Emmergency Contacts</h3>
+                                <a class="btn btn-sm btn-primary float-right"
+                                    href="{% url 'school:add_profile_staff_emmergency' students.id %}">Add Contact</a>
+                            </div>
+                            <div class="card-body">
+                                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="example4" class="table table-bordered table-striped table-hover" role="grid"
+                                                aria-describedby="example2_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                                            colspan="1" aria-sort="ascending"
+                                                            aria-label="Rendering engine: activate to sort column descending">Name 
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                            colspan="1" aria-label="Platform(s): activate to sort column ascending">
+                                                            Phone Number</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                            colspan="1" aria-label="CSS grade: activate to sort column ascending">Action
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for emmergency in student_emmergency_contact %}
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="sorting_1">{{emmergency.name}}</td>
+                
+                                                        <td>{{emmergency.phone}}</td>
+                                                        <td>
+                                                           
+                                                            <a class="btn btn-sm btn-warning" href="{% url 'school:edit_staff_contact' emmergency.id  %} ">Edit</a>
+                                                            <a class="btn btn-sm btn-danger" href="{% url 'school:delete_staff_emmergency' emmergency.id %} ">Delete</a>
+                                                        </td>
+                                                    </tr>
+                
+                                                    {% endfor %}
+                
+                                                </tbody>
+                                                <tfoot>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card card-primary card-outline">
+                            <div class="card-header ">
+                                <a class="btn btn-sm btn-primary float-right"
+                                    href="{% url 'school:add_profile_staff_work' students.id %}">Add Experience</a>
+                                <h3 class="card-title">Work Experience</h3>
+
+                            </div>
+                            <div class="card-body">
+                                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="example5" class="table table-bordered table-striped table-hover" role="grid"
+                                                aria-describedby="example2_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                                            colspan="1" aria-sort="ascending"
+                                                            aria-label="Rendering engine: activate to sort column descending">Company
+                                                        </th>
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending"
+                                                            aria-label="Rendering engine: activate to sort column descending">Duration
+                                                        </th>
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending"
+                                                            aria-label="Rendering engine: activate to sort column descending">Reference
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                            colspan="1" aria-label="CSS grade: activate to sort column ascending">Action
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for work in student_work_history %}
+                                                    
+                                                    <tr role="row" class="odd">
+                                                        <td class="sorting_1">{{work.company_name}}</td>
+                                                        <td class="sorting_1">{{work.startdate }} to {{  work.enddate}}</td>
+                                                        
+                                                        <td class="sorting_1">{{work.reference}}</td>
+                                                        <td>
+                                                            <a class="btn btn-sm btn-warning" href="{% url 'school:edit_staff_work' work.id %}">Edit</a>
+                                                            <a class="btn btn-sm btn-danger" href="{% url 'school:delete_staff_work' work.id %}">Delete</a>
+                                                        </td>
+                                                    </tr>
+                
+                                                    {% endfor %}
+                
+                                                </tbody>
+                                                <tfoot>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

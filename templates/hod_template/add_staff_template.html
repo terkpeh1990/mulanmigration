@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="col-9 mx-auto nov">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg">
+                    <div class="card ">
+                        <div class="card-header bg-primary color-palette">
+                            <h3 class="card-title">Staff Detail</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form role="form" method="POST" enctype="multipart/form-data" novalidate>
+                            {% csrf_token %}
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group col">
+                                        {{ form.Surname|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col">
+                                        {{ form.firstname|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col">
+                                        {{ form.middlename|as_crispy_field }}
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col">
+                                        {{ form.preferredname|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col">
+                                        {{ form.dob|as_crispy_field }}
+                                    </div>
+
+
+
+                                </div>
+                                <div class="row">
+
+                                    <div class="form-group col">
+                                        {{ form.gender|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col">
+                                        {{ form.place_of_birth|as_crispy_field }}
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col">
+                                        {{ form.nationality|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col">
+                                        {{ form.religion|as_crispy_field }}
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col">
+                                    {{ form.residential_address|as_crispy_field }}
+                                </div>
+                                <div class="form-group col">
+                                    {{ form.suburb|as_crispy_field }}
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+
+                                <div class="form-group col">
+                                    {{ form.postal_address|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                             <div class="row">
+                                <div class="form-group col">
+                                    {{ form.phone|as_crispy_field }}
+                                </div>
+                                <div class="form-group col">
+                                    {{ form.salary|as_crispy_field }}
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+
+                                
+                                <div class="form-group col">
+                                    {{ form.branch|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    {{ form.profile_pic|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    <button type="submit" class="btn bg-primary color-palette">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+{% endblock %}

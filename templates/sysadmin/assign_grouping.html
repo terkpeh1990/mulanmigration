@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card mx-auto container p-3 mt-5">
+    <div class="row">
+        <div class="col-4 m-2 p-2 ">
+            <ul class="list-group  mb-3">
+                <li class="list-group-item">
+                    <b>Staff ID.</b> <a class="float-right text-muted">
+                        {{profile.user.username}}</a>
+                </li>
+                <li class="list-group-item">
+                    <b>Name</b> <a class="float-right text-muted">{{profile.name}}</a>
+                </li>
+                <li class="list-group-item">
+                    <b>Email</b> <a class="float-right text-muted">{{profile.email}}</a>
+                </li>
+
+                <!-- <li class="list-group-item">
+                    <b>Group</b> <a class="float-right text-muted">{{profile.user.groups.usergroup}}</a>
+                </li> -->
+
+
+            </ul>
+
+                <div class="approve-btn-div">
+                    <a id="approve-btn" class="btn btn-sm btn-outline-primary ml-2 m-4 px-5"
+                        href="{% url 'school:manage_profiles'  %}">Close <i class="fas fa-minus pl-3"></i>
+                    </a>
+                </div>
+
+
+
+
+        </div>
+
+        <div class="m-2 p-2 col ">
+            <div class="request-table d-flex justify-content-center">
+                <table class="request-table table col-10 ">
+                    <thead class="  request-table-head">
+                        <tr>
+                            <th scope="col-6">User Groups</th>
+                            <th scope="col-6">Acction</th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="request-table-body">
+                        {% for i in usergroup %}
+                        <tr>
+                            <td>{{i.name}}</td>
+
+
+                            <td>
+                                <a class="btn btn-sm btn-danger"
+                                            href="{% url 'school:set_staff_group' profile.id i.id %}">
+                                            Assign User To Group
+                                    </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

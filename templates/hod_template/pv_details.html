@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content ">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-10 mx-auto">
+                <div class="card-header">
+                    <h3 class="text-center">
+                        Pv Details
+                    </h3>
+                </div>
+                <div class="card card-primary card-outline">
+                    <div>
+                    <dl class="row ml-5">
+                        
+                        <dt class="col-sm-3">PV Number:</dt>
+                        <dd class="col-sm-3">{{ pvs.id }}</dd>
+                        <dt class="col-sm-3">Description:</dt>
+                        <dd class="col-sm-3">{{ pvs.description }}</dd>
+                        <dt class="col-sm-3">Pv Amount:</dt>
+                        <dd class="col-sm-3">{{ pvs.amount }}</dd>
+                        <dt class="col-sm-3">Status: </dt>
+                        {% if pvs.status == "pending" %}
+                        <dd class="col-sm-3"><span class="badge bg-warning">{{ pvs.status }}</span></dd>
+                        {% elif pvs.status == "approved" %}
+                        <dd class="col-sm-3"><span class="badge bg-primary">{{ pvs.status }}</span></dd>
+                        {% else %}
+                        <dd class="col-sm-3"><span class="badge bg-danger">{{ pvs.status }}</span></dd>
+                        {% endif %}
+                        <dt class="col-sm-3">Pv Date:</dt>
+                        <dd class="col-sm-3">{{ pvs.created_date }}</dd>
+                    </dl>
+                    </div>
+                        
+                    
+                    
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card card-primary card-outline">
+                            <div class="card-body">
+                            {% for group in user.groups.all %} {% if group.name == 'principal' %}
+                                {% if pvs.status == 'pending' %}
+                                    <a class="btn btn-sm btn-primary mb-1" href="{% url 'school:approve_pvs' pvs.id %}">Approve Pv</a>
+                                    <a class="btn btn-sm btn-danger mb-1 ml-3" href="{% url 'school:cancel_pvs' pvs.id %}">Cancelled Pv</a>
+                                {% else %}
+                                    
+                                {% endif %}
+                            {% endif %}
+                            {% endfor %}
+                                
+                                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="example3" class="table table-bordered table-striped table-hover"
+                                                role="grid" aria-describedby="example2_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting" tabindex="0" aria-controls="example2"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">
+                                                            Description</th>
+
+                                                        <th class="sorting" tabindex="0" aria-controls="example2"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">
+                                                            Amount GH&#8373</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for p in pvs_detail %}
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td>{{p.description }}</td>
+                                                        <td>{{p.amount }}</td>
+                                                    </tr>
+                                                    {% endfor %}
+
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr role="row">
+
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="example2"
+                                                            rowspan="1" colspan="1" aria-sort="ascending"
+                                                            aria-label="Rendering engine: activate to sort column descending">
+                                                            <b>TOTAL: </b>
+                                                        </th>
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="example2"
+                                                            rowspan="1" colspan="1" aria-sort="ascending"
+                                                            aria-label="Rendering engine: activate to sort column descending">
+                                                            <b> {{ detail_total.cc}}</b>
+                                                        </th>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

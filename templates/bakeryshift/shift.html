@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content%}
+
+<div class="col-12">
+    <div class="card card-primary card-outline ">
+        <div class="card-body">
+            <a class="btn btn-primary btn-lg mb-4" href="{% url 'shop:create_shift' %}">Start Shift</a>
+
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table  table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead class="">
+                                <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">ID</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Shift</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Status</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">User</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Start</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">End</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for pro in shifts %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>{{ pro.id }}</td>
+                                    <td>{{ pro.shift.name}}</td>
+                                    <td>{{ pro.status}}</td>
+                                    <td>{{ pro.profile.name}}</td>
+                                    <td>{{ pro.starttime}}</td>
+                                    <td>{{ pro.endtime}}</td>
+
+                                    <td>
+                                        {% if pro.status == 'Open' %}
+                                            <a class="btn btn-md btn-danger"
+                                            href="{% url 'shop:close_shift'  pro.id %}">End Shif</a>
+                                        {% else %}
+
+                                        {% endif %}
+
+                                        <a class="btn btn-md btn-primary ml-4"
+                                            href="{% url 'shop:view_shift' pro.id %}">View</a>
+                                    </td>
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endblock %}

@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+{% block content%}
+{% for group in user.groups.all %} {% if group.name == 'parent' %}
+<div class="col-lg">
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table table-bordered table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead>
+                                <tr role="row">
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Class Students</th>
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in stu %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>{{ s.Surname }} {{ s.firstname }}</td>
+
+                                    <td>
+                                        {% for group in user.groups.all %} {% if group.name == 'teacher' %}
+                                        <a id="reply_button" class="btn btn-sm btn-primary ml-3"
+                                            href="{% url 'school:subject_results' s.id %}">Add Results</a>
+
+                                        <a id="reply_button" class="btn btn-sm btn-warning ml-3"
+                                            href="{% url 'school:add_promotion' s.id %}">Promotion and Remarks</a>
+                                        <a id="reply_button" href="{% url 'school:print_student_result' s.id %}"
+                                            rel="noopener" target="_blank" class="btn btn-sm btn-danger ml-3"><i
+                                                class="fas fa-print"></i>
+                                            Print</a>
+
+                                        {% else %}
+                                        <a id="reply_button" class="btn btn-sm btn-success ml-3"
+                                            href="{% url 'school:view_student_result' s.id %}">View
+                                            Results</a>
+                                        <a class="btn btn-sm btn-danger"
+                                            href="{% url 'school:print_student_result' s.id %}" rel="noopener"
+                                            target="_blank" class="btn btn-default"><i class="fas fa-print"></i>
+                                            Print</a>
+                                        {% endif %}
+                                        {% endfor %}
+
+                                    </td>
+
+
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+                            <tfoot>
+
+
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="form-group col">
+                    <a class="btn btn-sm btn-primary " href="{% url 'school:manage_results' %}">Finish</a>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% else %}
+
+{% if stus %}
+<div class="col-lg">
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            Newly Promoted Students
+        </div>
+        <div class="card-body">
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table table-bordered table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead>
+                                <tr role="row">
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Class Students</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in stus %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>{{ s.Surname }} {{ s.firstname }}</td>
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+                            <tfoot>
+
+
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endif %}
+<div class="col-lg">
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table table-bordered table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead>
+                                <tr role="row">
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Class Students</th>
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in stu %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>{{ s.Surname }} {{ s.firstname }}</td>
+
+                                    <td>
+                                        {% for group in user.groups.all %} {% if group.name == 'teacher' %}
+                                        <a id="reply_button" class="btn btn-sm btn-primary ml-3"
+                                            href="{% url 'school:subject_results' s.id %}">Add Results</a>
+
+                                        <a id="reply_button" class="btn btn-sm btn-warning ml-3"
+                                            href="{% url 'school:add_promotion' s.id %}">Promotion and Remarks</a>
+                                       
+
+                                        {% endif %}
+                                        {% endfor %}
+
+                                    </td>
+
+
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+                            <tfoot>
+
+
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="form-group col">
+                    <a class="btn btn-sm btn-primary " href="{% url 'school:manage_results' %}">Finish</a>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endif %}
+{% endfor %}
+{% endblock %}

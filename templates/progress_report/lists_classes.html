@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content%}
+
+<div class = 'row'>
+    <div class="col-md-3">
+
+        <!-- Profile Image -->
+        <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+                <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle" src=" {% static 'images/msac-logo.png' %}"
+                        alt="User profile picture">
+                </div>
+                <br>
+                
+                <ul class="list-group list-group-unbordered mb-3">
+                    <li class="list-group-item">
+                        <b>ID</b> <a class="float-right text-muted">{{academic_terms.id}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Term</b> <a class="float-right text-muted">{{academic_terms.acadamic_terms}}</a>
+                    </li>
+                    
+                   
+                </ul>
+                <a class="btn btn-sm  btn-outline-primary btn-block" href="{% url 'school:list_academic_terms'  %}">Close</a>
+                
+            </div>
+            <!-- /.card-body -->
+        </div>
+        
+        <!-- /.card -->
+
+       
+    </div>
+    <div class="col-12 col-md-9">
+
+       
+        <div class="card card-primary card-outline">
+            <div class="card-body">
+                
+                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="example2" class="table table-bordered table-striped table-hover" role="grid"
+                                aria-describedby="example2_info">
+                                <thead>
+                                    <tr role="row">
+    
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending">Class Name</th>
+    
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                            aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for classes in class_list %}
+                                    </tr>
+                                    <tr role="row" class="odd">
+                                        <td>{{ classes.class_name }}</td>
+                                        
+                                        
+    
+                                        <td>
+                                            
+                                            <a class="btn btn-sm btn-outline-primary ml-2" href="{% url 'school:lists_subject' classes.id academic_terms.id %}">Select</a>
+                                        </td>
+                                    </tr>
+    
+                                    {% endfor %}
+    
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.card -->
+       
+    </div>
+
+</div>
+
+{% endblock %}

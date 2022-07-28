@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content%}
+
+<div class="col-12">
+    <div class="card card-primary card-outline ">
+        <div class="card-body">
+
+
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table  table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead class="">
+                                <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">ID</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Damage Date</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Product Name</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">quantity</th>
+                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Cause</th>
+                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Value</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Status</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for pro in damage %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>{{ pro.id }}</td>
+                                    <td>{{ pro.damage_date }}</td>
+                                    <td>{{ pro.product_id.name}}</td>
+                                    <td>{{ pro.quantity}}</td>
+                                    <td>{{ pro.cause}}</td>
+                                    <td>{{ pro.cost}}</td>
+                                    {% if pro.dastatus == 'Pending' %}
+                                    <td><span class="badge bg-warning">{{pro.dastatus}}</span></td>
+                                    {% elif pro.dastatus == 'Approved' %}
+                                    <td><span class="badge bg-success">{{pro.dastatus}}</span></td>
+                                    {% else %}
+
+                                    <td><span class="badge bg-danger">{{pro.dastatus}}</span></td>
+                                    {% endif %}
+                                    <td>
+                                    {% for group in user.groups.all %}
+                                        {% if group.name == 'principal' or group.name == 'manager'  or  group.name == 'hr'  %}
+                                            {% if pro.dastatus == 'Pending' %}
+                                                <a class="btn btn-sm btn-primary"
+                                                    href="{% url 'partytree:approve_damage' pro.id %}">Approve Damages</a>
+                                                <a class="btn btn-sm ml-1 btn-danger" href="{% url 'partytree:cancel_damages' pro.id %}">Cancel Damages</a>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    </td>
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endblock %}

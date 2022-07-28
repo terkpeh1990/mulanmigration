@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle" src=" {{students.profile_pic.url}}"
+                                alt="User profile picture">
+                        </div>
+
+                        <h3 class="profile-username text-center">{{students.Surname }} {{ students.firstname}}</h3>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Class</b> <a class="float-right">{{students.course_id}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Gender</b> <a class="float-right">{{students.gender}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Date of Birth</b> <a class="float-right">{{students.dob}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <!-- About Me Box -->
+                <div class="card card-primary card-outline">
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+                        
+                        <p class="text-muted">{{students.residential_address}}</p>
+                        
+                        <hr>
+                        <strong><i class="fa fa-phone mr-1"></i> Location</strong>
+                        
+                        <p class="text-muted">{{students.phone}}</p>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+
+            <div class="col-9 novalidate">
+
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card  card-primary card-outline">
+                            <div class="card-header ">
+                                <h3 class="card-title">Emmergency Contact</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form role="form" method="POST" enctype="multipart/form-data" novalidate>
+                                {% csrf_token %}
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-group col">
+                                            {{ form.name|as_crispy_field }}
+                                        </div>
+                                        <div class="form-group col">
+                                            {{ form.phone|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="form-group col">
+                                            <button type="submit" class="btn btn-sm btn-outline-primary">Submit</button>
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col float-left">
+                                            <a class="btn btn-sm btn-outline-warning" href="{% url 'school:add_student_medical' students.id  %}"> Next</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </form>
+                            <br>
+                                    {% if emm %}
+                                            <div class="m-4">
+                                                <div id="example3_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <table id="example3" class="table  table-striped table-hover" role="grid"
+                                                                aria-describedby="example2_info">
+                                                                <thead class="">
+                                                                    <tr role="row">
+                                    
+                                                                        
+                                                                        
+                                                                        
+                                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                                            aria-label="Browser: activate to sort column ascending">Name</th>
+                                                                        
+                                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                                            aria-label="Browser: activate to sort column ascending">Contact</th>
+                                                                        
+                                                                    
+                                                                        
+                                            
+                                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                                            aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {% for a in emm %}
+                                                                    </tr>
+                                                                    <tr role="row" class="odd">
+                                                                        
+                                                                        
+                                                                        <td>{{a.name}}</td>
+                                                                        <td>{{a.phone}}</td>
+                                                                        
+                                                                      
+                                                                    
+                                                                        <td>
+                                                                            
+                                                                        
+                                                                            <a class="btn btn-sm btn-outline-danger mr-2 mb-1"
+                                                                                href="{% url 'school:remove_student_emmergency_contact' a.id %}">Remove</a>
+                                                                            
+                                                                           
+                                                                        </td>
+                                                                    </tr>
+                                    
+                                                                    {% endfor %}
+                                    
+                                                                </tbody>
+                                    
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% else %}
+                                            <div class="m-4">
+                                                <div class="jumbotron">
+                                                    <div class="col-md-10 mx-auto">
+                                                      <p class="d-flex justify-content-center"><b>No Emmergency Contact</b></p>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            
+                                                
+                                    {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content%}
+
+<div class="col-lg">
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <a class="btn btn-outline-primary btn-sm mb-1" href="{% url 'school:add_class' %}">Add Class</a>
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table table-bordered table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead>
+                                <tr role="row">
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Class Name</th>
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for acadamic in class_list %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>{{ acadamic.class_name }}</td>
+                                    
+                                    
+
+                                    <td>
+                                        <a class="btn btn-sm btn-warning ml-6"
+                                            href="{% url 'school:edit_class' acadamic.id %}">Edit</a>
+                                        <a class="btn btn-sm btn-danger ml-2"
+                                            href="{% url 'school:delete_class' acadamic.id %}">Delete</a>
+                                        <a class="btn btn-sm btn-primary ml-2" href="{% url 'school:assign_subject_to_class' acadamic.id %}">Subjects</a>
+                                    </td>
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content%}
+
+<div class="col-lg">
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <form class="">
+                <div class="form-row  ">
+                    <div class="form-group col-md-12 col-sm-12">
+                        {{ myFilter.form.student_id|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6">
+                        {{ myFilter.form.start_date|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6">
+                        {{ myFilter.form.end_date|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-row  ">
+                    <div class="form-group col-md-2 col-sm-12">
+                        <button class="btn btn-sm btn-primary "> Search </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <a class="btn btn-primary btn-sm mb-1" href="{% url 'school:reminders' %}">Send Reminders</a>
+            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table table-bordered table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Rendering engine: activate to sort column descending">Student ID
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Full Name</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending">Academic Year</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Engine version: activate to sort column ascending">Acadamic Term
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="CSS grade: activate to sort column ascending">Balance</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="CSS grade: activate to sort column ascending">Date</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for fess in ord %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td class="sorting_1">{{fess.student_id}}</td>
+                                    <td>{{fess.student_id.firstname}} {{fess.student_id.Surname}}</td>
+                                    <td>{{fess.session_year_id}}</td>
+                                    <td>{{fess.term_year_id}}</td>
+                                    <td>{{fess.balance}}</td>
+                                    <td>{{fess.bill_date}}</td>
+                                </tr>
+                                {% endfor %}
+                                <tr role="row" class="odd">
+                                    <td>
+                                        <b>TOTAL</b>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                
+                                        <b>GH&#8373 {{ total.cc}}</b>
+                                
+                                
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endblock %}

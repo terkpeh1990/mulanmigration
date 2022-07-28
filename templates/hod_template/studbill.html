@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content ">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-10 mx-auto">
+                <div class="card card-primary card-outline">
+                    <h3 class="text-center mt-2">
+                        CLASS BILL {{studbill.amount}}
+                    </h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card card-primary card-outline">
+                            <div class="card-body">
+                                
+                                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="example3" class="table table-bordered table-striped table-hover"
+                                                role="grid" aria-describedby="example2_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting" tabindex="0" aria-controls="example2"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">
+                                                            Description</th>
+
+                                                        <th class="sorting" tabindex="0" aria-controls="example2"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">
+                                                            Amount GH&#8373</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    
+                                                    {% for s in bill %}
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td>{{s.description }}</td>
+                                                        <td>{{s.amount }}</td>
+                                                    </tr>
+                                                    {% endfor %}
+
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr role="row">
+
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="example2"
+                                                            rowspan="1" colspan="1" aria-sort="ascending"
+                                                            aria-label="Rendering engine: activate to sort column descending">
+                                                            <b>TOTAL: </b>
+                                                        </th>
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="example2"
+                                                            rowspan="1" colspan="1" aria-sort="ascending"
+                                                            aria-label="Rendering engine: activate to sort column descending">
+                                                            <b> {{ clsbill_total.cc}}</b>
+                                                        </th>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

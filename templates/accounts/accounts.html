@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content%}
+
+<div class="col-12">
+    <div class="row ">
+        <div class="col-12 col-sm-12 col-md-4">
+            <div class="info-box">
+                <span class="info-box-icon bg-default elevation-1"><i class="ion ion-stats-bars"></i></span>
+        
+                <div class="info-box-content">
+                    <span class="info-box-text mb-2"style="font-size: 18px">Total Accounts</span>
+                    <span class="info-box-number"style="font-size: 25px">{{total_accounts}}</span>
+
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-12 col-sm-12 col-md-4">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-default elevation-1"><i class="fas fa-chart-pie"></i></span>
+        
+                <div class="info-box-content">
+                    <span class="info-box-text mb-2"style="font-size: 18px">Total Sub Acconts</span>
+                    <span class="info-box-number"style="font-size: 25px">{{ total_sub_accounts}}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <div class="col-12 col-sm-12 col-md-4">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-default elevation-1"><i class="fas fa-shopping-cart"></i></span>
+        
+                <div class="info-box-content">
+                    <span class="info-box-text mb-2">Last Account Code</span>
+                    <span class="info-box-number">{{ last_accounts_code.code }} - {{ last_accounts_code.description }}</span>
+
+                  
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        
+        
+        
+        <!-- fix for small devices only -->
+        <div class="clearfix hidden-md-up"></div>
+        
+       
+    </div>
+    <div class="card card-dark card-outline  m-4 p-4">
+        <div class="card-body">
+            {% comment %} <a class="btn btn-outline-dark btn-sm mb-1" href="#"></a> {% endcomment %}
+            <div calss = "row">
+                <form role="form" method="POST" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-group col-12 col-sm-12 col-md-3">
+                                {{ form.code|as_crispy_field }}
+                            </div>
+                            <div class="form-group col-12 col-sm-12 col-md-9">
+                                {{ form.description|as_crispy_field }}
+                            </div>
+                            
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="form-group col">
+                                <button type="submit" class="btn btn-outline-dark btn-sm">Save Accounts</button>
+                            </div>
+                            
+                            
+                        </div>
+                    </div> 
+                    
+                        
+                </form>
+            </div>
+            
+
+            {% if accounts %}
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12">
+                        
+                        <table id="example2" class="table  table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead class="">
+                                <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Code</th>
+                                    
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Description</th>
+
+                                   
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for a in accounts %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>{{ a.code }}</td>
+                                    
+                                    <td>{{ a.description}}</td>
+                                   
+
+
+                                    <td>
+                                        
+                                        <a class="btn btn-sm  btn-outline-warning" href="{% url 'accounts:edit_accounts' a.id %}">Update</a>
+                                        <a class="btn btn-sm  btn-outline-primary" href="{% url 'accounts:sub_accounts' a.id %}">Sub Accounts</a>
+                                        
+                                    </td>
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+            {% else %}
+            <div class="m-4">
+                <div class="jumbotron">
+                    <div class="col-md-10 mx-auto">
+                      <p class="d-flex justify-content-center"><b>No Accounts Created</b></p>
+                    </div>
+                </div> 
+            </div>
+            
+            {% endif %}
+            
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle" src=" {{stus.profile_pic.url}}"
+                                alt="User profile picture">
+                        </div>
+
+                        <h3 class="profile-username text-center text-muted">{{studentss.Surname }} {{studentss.firstname}}</h3>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Promoted to</b> <a class="float-right text-muted">{{stus.course_id}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Gender</b> <a class="float-right text-muted">{{stus.gender}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Date of Birth</b> <a class="float-right text-muted">{{stus.dob}}</a>
+                            </li> 
+
+                        </ul>
+                        <div class="form-group col">
+                           
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <!-- About Me Box -->
+               
+                <!-- /.card -->
+            </div>
+
+            <div class="col-9 ">
+
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                             Terminal Exams<br>
+                             Position: {{cc.rank}}
+
+                            </div>
+                            <div class="card-body">
+                                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="example3" class="table table-bordered table-striped table-hover"
+                                                role="grid" aria-describedby="example2_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">Subjects</th>
+                                                        
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">Class Score</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">Exams Score</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">Total</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">Remarks</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for s in student_results %}
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td>{{s.subject_id.subject_name }}</td>
+                                                        <td>{{s.subject_assignment_marks }}</td>
+                                                        <td>{{s.subject_exam_marks }}</td>
+                                                        <td>{{s.total }}</td>
+                                                        <td>{{s.remarks}}</td>
+                                                    </tr>
+                                                    
+                                                    {% endfor %}
+
+                                                </tbody>
+                                                <tfoot>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                
+                        
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

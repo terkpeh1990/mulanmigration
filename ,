@@ -1,0 +1,408 @@
+[2022-04-05 22:07:09,057: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 2.00 seconds... (1/100)
+
+[2022-04-05 22:07:11,240: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 4.00 seconds... (2/100)
+
+[2022-04-05 22:07:15,437: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 6.00 seconds... (3/100)
+
+[2022-04-05 22:07:21,628: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 8.00 seconds... (4/100)
+
+[2022-04-05 22:07:29,823: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 10.00 seconds... (5/100)
+
+[2022-04-05 22:07:40,020: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 12.00 seconds... (6/100)
+
+[2022-04-05 22:07:52,213: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 14.00 seconds... (7/100)
+
+[2022-04-05 22:08:06,408: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 16.00 seconds... (8/100)
+
+[2022-04-05 22:08:22,636: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 18.00 seconds... (9/100)
+
+[2022-04-05 22:08:40,839: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 20.00 seconds... (10/100)
+
+[2022-04-05 22:09:01,039: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 22.00 seconds... (11/100)
+
+[2022-04-05 22:09:23,243: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 24.00 seconds... (12/100)
+
+[2022-04-05 22:09:47,440: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 26.00 seconds... (13/100)
+
+[2022-04-05 22:10:13,655: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 28.00 seconds... (14/100)
+
+[2022-04-05 22:10:41,859: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 30.00 seconds... (15/100)
+
+[2022-04-05 22:11:12,068: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:11:44,279: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:12:16,504: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:12:48,737: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:13:20,943: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:13:53,153: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:14:25,360: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:14:57,645: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:15:29,861: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:16:02,067: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:16:34,277: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:17:06,493: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:17:38,702: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:18:10,912: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:18:43,121: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:19:15,327: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:19:47,538: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:20:19,751: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:20:51,962: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:21:24,171: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:21:56,384: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:22:28,589: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:23:00,789: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:23:32,998: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:24:05,207: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:24:37,412: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:25:09,625: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:25:41,836: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:26:14,056: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:26:46,268: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:27:18,482: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:27:50,693: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:28:22,903: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:28:55,113: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:29:27,315: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:29:59,527: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:30:31,743: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:31:03,957: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:31:36,165: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:32:08,372: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:32:40,580: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:33:12,785: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:33:44,996: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:34:17,210: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:34:49,414: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:35:21,625: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:35:53,839: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:36:26,051: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:36:58,262: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:37:30,473: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:38:02,929: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:38:35,142: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:39:07,351: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:39:39,562: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:40:11,777: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:40:43,989: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:41:16,198: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:41:48,409: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:42:20,652: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:42:52,861: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:43:25,072: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:43:57,274: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:44:29,487: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:45:01,737: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:45:33,951: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:46:06,159: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:46:38,367: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:47:10,575: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:47:42,781: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:48:14,998: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:48:47,209: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:49:19,417: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:49:51,627: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:50:23,838: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:50:56,052: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:51:28,260: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:52:00,470: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:52:32,685: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:53:04,896: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:53:37,094: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:54:09,307: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:54:41,517: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:55:13,730: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:55:45,947: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:56:18,157: ERROR/MainProcess] consumer: Cannot connect to redis://redis-19362.c250.eu-central-1-1.ec2.cloud.redislabs.com:19362//: Authentication required.
+Trying again in 32.00 seconds... (16/100)
+
+[2022-04-05 22:56:50,364: CRITICAL/MainProcess] Unrecoverable error: OperationalError('Authentication required',)
+Traceback (most recent call last):
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/kombu/transport/virtual/base.py", line 918, in create_channel
+    return self._avail_channels.pop()
+IndexError: pop from empty list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/kombu/connection.py", line 448, in _reraise_as_library_errors
+    yield
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/kombu/connection.py", line 439, in _ensure_connection
+    callback, timeout=timeout
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/kombu/utils/functional.py", line 313, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/kombu/connection.py", line 879, in _connection_factory
+    self._connection = self._establish_connection()
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/kombu/connection.py", line 814, in _establish_connection
+    conn = self.transport.establish_connection()
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/kombu/transport/virtual/base.py", line 938, in establish_connection
+    self._avail_channels.append(self.create_channel(self))
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/kombu/transport/virtual/base.py", line 920, in create_channel
+    channel = self.Channel(connection)
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/kombu/transport/redis.py", line 567, in __init__
+    self.client.ping()
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/commands/core.py", line 1053, in ping
+    return self.execute_command("PING", **kwargs)
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/client.py", line 1222, in execute_command
+    lambda error: self._disconnect_raise(conn, error),
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/retry.py", line 48, in call_with_retry
+    fail(error)
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/client.py", line 1222, in <lambda>
+    lambda error: self._disconnect_raise(conn, error),
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/client.py", line 1208, in _disconnect_raise
+    raise error
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/retry.py", line 45, in call_with_retry
+    return do()
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/client.py", line 1220, in <lambda>
+    conn, command_name, *args, **options
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/client.py", line 1194, in _send_command_parse_response
+    conn.send_command(*args)
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/connection.py", line 803, in send_command
+    self.pack_command(*args), check_health=kwargs.get("check_health", True)
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/connection.py", line 779, in send_packed_command
+    self.check_health()
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/connection.py", line 771, in check_health
+    self.retry.call_with_retry(self._send_ping, self._ping_failed)
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/retry.py", line 50, in call_with_retry
+    raise error
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/retry.py", line 45, in call_with_retry
+    return do()
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/connection.py", line 761, in _send_ping
+    if str_if_bytes(self.read_response()) != "PONG":
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/connection.py", line 821, in read_response
+    response = self._parser.read_response(disable_decoding=disable_decoding)
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/redis/connection.py", line 336, in read_response
+    raise error
+redis.exceptions.AuthenticationError: Authentication required
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/celery/worker/worker.py", line 203, in start
+    self.blueprint.start(self)
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/celery/bootsteps.py", line 365, in start
+    return self.obj.start()
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/celery/worker/consumer/consumer.py", line 326, in start
+    blueprint.start(self)
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/celery/worker/consumer/connection.py", line 21, in start
+    c.connection = c.connect()
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/celery/worker/consumer/consumer.py", line 422, in connect
+    conn = self.connection_for_read(heartbeat=self.amqheartbeat)
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/celery/worker/consumer/consumer.py", line 429, in connection_for_read
+    self.app.connection_for_read(heartbeat=heartbeat))
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/celery/worker/consumer/consumer.py", line 456, in ensure_connected
+    callback=maybe_shutdown,
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/kombu/connection.py", line 383, in ensure_connection
+    self._ensure_connection(*args, **kwargs)
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/kombu/connection.py", line 439, in _ensure_connection
+    callback, timeout=timeout
+  File "/usr/lib/python3.6/contextlib.py", line 99, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/home/msac/.virtualenvs/mulan/lib/python3.6/site-packages/kombu/connection.py", line 452, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Authentication required
+[2022-04-05 22:56:51,947: WARNING/MainProcess] Traceback (most recent call last):
+
+[2022-04-05 22:56:51,947: WARNING/MainProcess]   File "/usr/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+
+[2022-04-05 22:56:51,951: WARNING/MainProcess]   File "/usr/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+
+[2022-04-05 22:56:51,954: WARNING/MainProcess]   File "/home/msac/.virtualenvs/mulan/lib/python3.6/shutil.py", line 486, in rmtree
+    _rmtree_safe_fd(fd, path, onerror)
+
+[2022-04-05 22:56:51,957: WARNING/MainProcess]   File "/home/msac/.virtualenvs/mulan/lib/python3.6/shutil.py", line 444, in _rmtree_safe_fd
+    onerror(os.unlink, fullname, sys.exc_info())
+
+[2022-04-05 22:56:51,960: WARNING/MainProcess]   File "/home/msac/.virtualenvs/mulan/lib/python3.6/shutil.py", line 442, in _rmtree_safe_fd
+    os.unlink(name, dir_fd=topfd)
+
+[2022-04-05 22:56:51,964: WARNING/MainProcess] OSError: [Errno 16] Device or resource busy: '.nfs000000001676001800003009'
+

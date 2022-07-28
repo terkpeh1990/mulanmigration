@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content%}
+<div class="row">
+    <div class="col-12">
+        <div class="card  card-dark card-outline p-4 m-4">
+           
+                <h3 class="profile-username text-center text-muted">Mulan Smart Activity Center</h3>
+                <ul class="list-group list-group-unbordered mb-3">
+                    <li class="list-group-item">
+                        <b>Student ID.</b> <a class="float-right text-muted">{{bill.student_id.id}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Name</b> <a class="float-right text-muted">{{bill.student_id.Surname }} {{ bill.student_id.firstname}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Academic Year</b> <a class="float-right text-muted">{{bill.session_year_id.name}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Academic Term</b> <a class="float-right text-muted">{{bill.term_year_id.acadamic_terms.name}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Current Bill No.</b> <a class="float-right text-muted">{{bill.id }}</a>
+                    </li>
+                
+
+                    <li class="list-group-item">
+                        <b>Date</b> <a class="float-right text-muted">{{bill.bill_date}}</a>
+                    </li>
+
+                </ul>
+            
+            <div class="card-body">
+                <div></div>
+                <form id="friend-form" method="post" novalidate>
+                    {% csrf_token %}
+                    
+                        <div class="card-body">
+                            <div class="form-group ">
+                               
+                                
+    
+                                <div class="row">
+                                    <div class="form-group col-12 col-md-9">
+                                        <label for="">Description.</label>
+                                        {{ form.description|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col-12 col-md-3">
+                                        <label for="">Amount.</label>
+                                        {{ form.amount|as_crispy_field }}
+                                    </div>
+                                    
+                                </div>
+    
+                                <div class="form-row">
+                                    <div class="col text-center">
+                                        <button class="btn  btn-sm btn-outline-dark" value="Create Friend">Add Bill Details</button>
+                                    </div>
+    
+                                </div>
+    
+                            </div>
+                        </div>
+                    
+                </form>
+                <table class="table table-striped table-sm" id="my_friends">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Amount(GHC)</th>
+                            
+                            <th>Action</th> 
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        
+
+                        {% for item in detail %}
+                        <tr>
+                            <td>{{item.description}}</td>
+                            <td>{{item.amount}}</td>
+                            <td>
+                                            
+                                <a  class = "text-danger far fa-trash-alt fa-lg ml-2" href="{% url 'accounts:deletes_billitems' item.id %}"></a>
+                            </td>
+                            
+                           
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            
+                        </tr>
+
+                        <tr>
+
+                            <td><b>Sub Total</b></td>
+                            <td><b>{{pv.amount}}</b> </td>
+
+                        </tr>
+                        <tr>
+                            {% if arreas_total  %}
+                            <td><b>Arreas</b></td>
+                            <td><b>{{arreas_total.bb}}</b> </td>
+
+                           
+
+                            {% endif %}
+
+                            
+
+                        </tr>
+                        <tr>
+
+                            <td><b>Discount</b></td>
+                            <td><b>0.00</b> </td>
+
+                        </tr>
+                        <tr>
+
+                            <td><b>Total</b></td>
+                            <td><b>{{total}}</b> </td>
+
+                        </tr>
+                        
+                        
+
+                    </tbody>
+                </table>
+                <div class="row">
+
+                    
+                    
+                
+
+                    <div class="col ">
+                        <a class="btn btn-sm btn-outline-dark mt-2 ml-2" href="{% url 'accounts:view_student_bill' bill.id %}">Close
+                            </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+    
+
+</div> 
+
+{% endblock %}

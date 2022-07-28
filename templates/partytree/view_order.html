@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content%}
+<div class="row">
+    <div class="col-10 mx-auto content-center">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="profile-username text-center text-muted">Party Tree </h3>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Order No.</b> <a class="float-right text-muted">{{order.id}}</a>
+                            </li>
+                            
+
+                            <li class="list-group-item">
+                                <b>Date</b> <a class="float-right text-muted">{{order.order_date}}</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="card-body text-center">
+                        <table class="table table-striped table-sm" id="my_friends">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Unit Price</th>
+                                    <th>Qty</th>
+                                    <th>Amount (GHC)</th>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in detail %}
+                                <tr>
+                                    <td>{{item.product.name}}</td>
+                                    <td>{{item.unit_price}}</td>
+                                    <td>{{item.quantity}}</td>
+                                    <td>{{item.gross_price}}</td>
+
+
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+
+                                    <td></td>
+                                    <td></td>
+                                    <td><b>Sub Total</b></td>
+                                    <td><b>{{order.gross_price}}</b> </td>
+
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td><b>VAT 0%</b></td>
+                                    <td><b>{{order.vat}}</b></td>
+
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td><b>Total</b></td>
+                                    <td><b>{{order.total_price}}</b></td>
+                                </tr>
+
+                                {% if order.money_balance > 0.00 %}
+
+                                {% endif %}
+
+
+
+                            </tbody>
+                        </table>
+                        <div class="form-row">
+                            <div class="col text-center">
+                                <a class="btn btn-danger mt-2 ml-2" href="{% url 'partytree:manage_order' %}">Close </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

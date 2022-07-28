@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="col-9 mx-auto novalidate">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg">
+                    <div class="card ">
+                        <div class="card-header bg-primary color-palette">
+                            <h3 class="card-title">Class</h3>
+                        </div>
+                        <form id="personForm" role="form" method="POST" data-term-url="{% url 'school:load_term' %}" >
+                            {% csrf_token %}
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="form-group col">
+                                        {{ form.session_year_id|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col">
+                                        {{ form.term_year_id|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col">
+                                        {{ form.class_id|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col">
+                                        {{ form.bill_date|as_crispy_field }}
+                                    </div>
+                                </div>
+                                <!-- <div class="row">
+                                    
+                                </div> -->
+                                <div class="row">
+                                    <div class="form-group col">
+                                        <button type="submit" class="btn bg-primary color-palette">Submit</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock %}

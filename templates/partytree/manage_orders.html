@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block content%}
+
+<div class="col-12">
+    <div class="row ">
+        <div class="col-12 col-sm-12 col-md-3">
+            <div class="info-box">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Orders</span>
+                    <span class="info-box-number">
+                        {{to}}
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-12 col-sm-12 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-dollar-sign"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Cash Sales</span>
+                    <span class="info-box-number">GH&#8373 {{  grss.cc}}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <div class="col-12 col-sm-12 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-dollar-sign"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Momo Sales</span>
+                    <span class="info-box-number">GH&#8373 {{  momo.cc}}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <div class="col-12 col-sm-12 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-dollar-sign"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Sales</span>
+                    <span class="info-box-number">GH&#8373 {{  total.cc}}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
+
+
+        <!-- fix for small devices only -->
+        <div class="clearfix hidden-md-up"></div>
+
+
+    </div>
+    <div class="card card-primary card-outline ">
+        <div class="card-body">
+            <a class="btn btn-primary mb-1" href="{% url 'partytree:create_order' %}">Create Order</a>
+
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-7">
+                        <h4>Daily Orders</h4>
+                        <table id="example2" class="table  table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead class="">
+                                <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Order No</th>
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Total</th>
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Balance</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in orders %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>{{ order.id }}</td>
+
+                                    <td>{{ order.gross_price}}</td>
+                                    <td>{{ order.balance}}</td>
+
+
+                                    <td>
+                                        <a class="btn btn-sm  btn-warning " href="{% url 'partytree:Vew_order' order.id %}">View</a>
+                                        {% if order.balance > 0 %}
+                                            <a class="btn btn-sm  btn-danger" href="{% url 'partytree:makepayment' order.id %}">Pay With Cash</a>
+                                            <a class="btn btn-sm  btn-warning" href="{% url 'partytree:momomakepayment' order.id %}">Pay With Momo</a>
+                                            <a class="btn btn-sm  btn-success " href="{% url 'partytree:add_items_to_chart' order.id %}">Resume</a>
+
+                                        {% endif %}
+                                        <!--<a class="btn btn-sm  btn-primary " href="{% url 'partytree:checkout_print' order.id %}">Print Receipt</a>-->
+
+                                    </td>
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-5 ">
+                        <h4>Product List</h4>
+                        <table  id="example1" class="table  table-striped table-hover  ml-3" role="grid"
+                        aria-describedby="example2_info">
+                        <thead class="request-table-head">
+                            <tr role="row">
+                                <th scope="col">Code</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for r in list_inventory %}
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td>{{ r.product_id.id}}</td>
+                                <td>{{ r.product_id.name}}</td>
+                                <td>{{ r.product_id.unit_price}}</td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endblock %}

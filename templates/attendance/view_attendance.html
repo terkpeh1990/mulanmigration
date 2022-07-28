@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content%}
+
+<div class="col-lg">
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table table-bordered table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead>
+                                <tr role="row">
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Student</th>
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Class</th>
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending">Status</th>
+                                {% for group in user.groups.all %} {% if group.name == 'teacher' %}
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending">Change Status</th>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </thead>
+                            <tbody>
+                                {% for s in stu %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>{{ s.student_id.Surname  }} {{ s.student_id.firstname }}</td>
+                                    <td>{{ s.student_id.course_id.class_name }}</td>
+                                    <td>
+                                    {% if s.status  %}
+                                        <span class="badge badge-primary">Present</span>
+                                    {% else %}
+                                        <span class="badge badge-danger">Absent</span>
+                                    {% endif %}
+                                    </td>
+                                    {% for group in user.groups.all %} {% if group.name == 'teacher' or  group.name == 'admin' or group.name == 'hr' %}
+                                    <td>
+                                        
+                                        {% if s.status %}
+                                            <a class="btn btn-sm btn-danger" href="{% url 'school:eabsent' s.id %}">Absent</a>
+                                        {% else %}
+                                            <a class="btn btn-sm btn-primary" href="{% url 'school:epresent' s.id %}">Present</a>
+                                        {% endif %}
+                                            
+                                       
+                                   
+                                    </td>
+                                {% endif %}
+                                {% endfor %}
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+           <a class="btn btn-sm btn-primary" href="{% url 'school:manage_attendance' %}">Finish</a>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endblock %}

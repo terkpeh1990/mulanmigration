@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle" src=" {{student.profile_pic.url}}"
+                                alt="User profile picture">
+                        </div>
+
+                        <h3 class="profile-username text-center text-muted">{{student.Surname }}
+                            {{student.firstname}}</h3>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Class</b> <a class="float-right text-muted">{{student.course_id}}</a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <b>Subject</b> <a class="float-right text-muted">{{rep.subject}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Topic</b> <a class="float-right text-muted">{{rep.topic}}</a>
+                            </li>
+                            {% if rep.status == 'pending' %}
+                                <li class="list-group-item">
+                                    <b>Status</b> <a class="float-right badge bg-warning text-muted">{{rep.status}}</a>
+                                </li>
+                            {% elif rep.status == 'approved' %}
+                                <li class="list-group-item">
+                                    <b>Status</b> <a class="float-right badge bg-primary text-muted">{{rep.status}}</a>
+                                </li>
+                            {% else %}
+                                <li class="list-group-item">
+                                    <b>Status</b> <a class="float-right badge bg-danger text-muted">{{rep.status}}</a>
+
+                            {% endif %}
+
+
+
+
+                        </ul>
+                        {% for group in user.groups.all %} {% if group.name == 'admin' %}
+                            {% if rep.status != "approved" %}
+                                <a class="btn btn-sm  btn-primary btn-block" href="{% url 'school:approve_remarks' rep.id %}">Approve</a>
+                            {% endif %}
+                        {% endif %}
+                        {% endfor %}
+
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <!-- About Me Box -->
+
+                <!-- /.card -->
+            </div>
+
+            <div class="col-9 ">
+
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card card-primary card-outline">
+
+                            <div class="card-body">
+                                <div>
+                                   {{rep.remarks|striptags}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card card-primary card-outline">
+
+                            <div class="card-body">
+                                <div class="form-group col">
+                                    <div class="text-center">
+                                        <img class="" src=" {{rep.proof.url}}" alt="Student's Image">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,2717 @@
+{% load static %}
+{% for group in user.groups.all %} {% if group.name == 'admin' %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'school:dashboard' %}" class="brand-link">
+    <img src="{% static 'dist/img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-heavy">Mulan Activity Center</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+                  with font-awesome or any other icon font library -->
+
+
+
+          {% url 'school:manage_parent' as manage_parent %}
+          {% url 'school:edit_parent' parent.id as edit_parent %}
+          {% url 'school:manage_student' as manage_student %}
+          {% url 'school:edit_student' id as edit_student %}
+          <li class="nav-item {% if request.path == manage_parent %} menu-open {% endif %}
+            {% if request.path == edit_parent %} menu-open {% endif %}
+            {% if request.path == manage_student  %} menu-open {% endif %}
+            {% if request.path == edit_student %} menu-open {% endif %}
+
+
+
+              ">
+
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-anchor"></i>
+              <p>
+                Parents & Students
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                {% url 'school:manage_parent' as manage_parent %}
+                {% url 'school:edit_parent' parent.id as edit_parent %}
+                {% url 'school:manage_student' as manage_student %}
+                {% url 'school:edit_student' id as edit_student %}
+
+
+                <a href="{{manage_parent}}" class="nav-link
+                {% if request.path == manage_parent %} active {% endif %}
+                {% if request.path == edit_parents %} active {% endif %}
+
+                ">
+                  <i class="fa fa-users nav-icon"></i>
+                  <p>Parents</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                {% url 'school:manage_student' as manage_student %}
+                {% url 'school:edit_student' id as edit_student %}
+                <a href="{{ manage_student }}" class="nav-link {% if request.path == edit_student  %} active {% endif %}
+                {% if request.path == manage_student  %} active {% endif %}">
+                  <i class="fas fa-user-graduate nav-icon"></i>
+                  <p>Students</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+          {% url 'school:manage_attendance' as manage_attendance %}
+          {% url 'school:create_attendance' as create_attendance %}
+          {% url 'school:attendance_report' as  attendance_report %}
+          <li class="nav-item {% if request.path == manage_attendance %} menu-open {% endif %}
+           {% if request.path == create_attendance %} menu-open {% endif %}
+           {% if request.path == attendance_report  %} menu-open {% endif %}
+
+
+
+
+             ">
+
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-anchor"></i>
+              <p>
+                Attendance
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                {% url 'school:manage_attendance' as manage_attendance %}
+                {% url 'school:create_attendance' as create_attendance %}
+
+
+
+                <a href="{{manage_attendance}}" class="nav-link
+                {% if request.path == manage_attendance %} active {% endif %}
+                {% if request.path == create_attendance %} active {% endif %}
+
+                ">
+                  <i class="fas fa-calendar-plus nav-icon"></i>
+                  <p>Create Attendance</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                {% url 'school:attendance_report' as  attendance_report %}
+                <a href="{{ attendance_report }}" class="nav-link {% if request.path == attendance_report  %} active {% endif %}">
+                  <i class="fas fa-calendar-plus nav-icon"></i>
+                  <p>Attendance Summery</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+
+
+        {% url 'school:list_academic_terms' as list_academic_terms %}
+        {% url 'school:lists_class'  acadamic.id as lists_class %}
+        {% url 'school:lists_subject' classes.id academic_terms.id  as lists_subject %}
+        {% url 'school:select_class_students' classes.id academic_terms.id classess.id  as select_class_students %}
+        {% url 'school:generalreport' as generalreport %}
+        <li class="nav-item {% if request.path == list_academic_terms %} menu-open {% endif %}
+         {% if request.path == lists_class %} menu-open {% endif %}
+         {% if request.path == lists_subject  %} menu-open {% endif %}
+         {% if request.path == manages_generalreport %} menu-open {% endif %}
+         {% if request.path == generalreport   %} menu-open {% endif %}
+
+
+           ">
+
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-anchor"></i>
+            <p>
+              Progress Report
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              {% url 'school:list_academic_terms' as list_academic_terms %}
+              {% url 'school:lists_class'  acadamic.id as lists_class %}
+              {% url 'school:lists_subject' classes.id academic_terms.id  as lists_subject %}
+              {% url 'school:select_class_students' classes.id academic_terms.id classess.id  as select_class_students %}
+
+              <a href="{{list_academic_terms}}" class="nav-link {% if request.path == list_academic_terms %} active {% endif %}
+              {% if request.path == lists_class  %} active {% endif %}
+              {% if request.path == lists_subject  %} active {% endif %}
+              {% if request.path == select_class_students  %} active {% endif %}
+              ">
+                <i class="fas fa-calendar-plus nav-icon"></i>
+                <p>Create Daily Reports</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'school:view_lists_class' as view_lists_class %}
+              <a href="{{ view_lists_class }}" class="nav-link {% if request.path == view_lists_class  %} active {% endif %}">
+                <i class="fas fa-calendar-plus nav-icon"></i>
+                <p>Progress Report</p>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+
+        {% url 'school:manage_academicyear' as manage_acadamic %}
+        {% url 'school:edit_academicyear' id as edit_acadamic %}
+        {% url 'school:manage_academicterm' as manage_term %}
+        {% url 'school:manage_class' as manage_class %}
+        {% url 'school:add_class' as add_class %}
+        {% url 'school:manage_subjects' as manage_subjects %}
+        {% url 'school:edit_subject' parent.id as edit_subject %}
+        <li class="nav-item
+
+        {% if request.path == manage_acadamic %} menu-open {% endif %}
+        {% if request.path == edit_acadamic  %} menu-open {% endif %}
+        {% if request.path == manage_term  %} menu-open {% endif %}
+        {% if request.path == manage_class  %} menu-open{% endif %}
+        {% if request.path == add_class  %} menu-open {% endif %}
+        {% if request.path == manage_subjects  %} menu-open{% endif %}
+        {% if request.path == edit_subject   %} menu-open {% endif %}
+
+
+           ">
+
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-anchor"></i>
+            <p>
+              Configuration
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              {% url 'school:manage_academicyear' as manage_acadamic %}
+            {% url 'school:edit_academicyear' id as edit_acadamic %}
+
+              <a href="{{manage_acadamic}}" class="nav-link {% if request.path == edit_acadamic %} active {% endif %}{% if request.path == manage_acadamic %} active {% endif %}
+
+              ">
+                <i class="fas fa-calendar-plus nav-icon"></i>
+                <p>Academic Year</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'school:manage_academicterm' as manage_term %}
+               <a href="{{ manage_term }}" class="nav-link {% if request.path == manage_term %} active {% endif %}">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+                  <p>
+                    Academic Term
+                  </p>
+               </a>
+            </li>
+            <li class="nav-item">
+              {% url 'school:manage_class' as manage_class %}
+              {% url 'school:add_class' as add_class %}
+               <a href="{{ manage_class  }}" class="nav-link {% if request.path == manage_class  %} active {% endif %} {% if request.path == add_class  %} active {% endif %}">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+                  <p>
+                    Classes
+                  </p>
+               </a>
+            </li>
+            <li class="nav-item">
+              {% url 'school:manage_subjects' as manage_subjects %}
+              {% url 'school:edit_subject' parent.id as edit_subject %}
+               <a href="{{ manage_subjects  }}" class="nav-link {% if request.path == manage_subjects  %} active {% endif %} {% if request.path == edit_subject  %} active {% endif %}">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Subjects
+                  </p>
+               </a>
+            </li>
+
+          </ul>
+        </li>
+
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+{% elif group.name == 'hr' %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'school:hrdashboard' %}" class="brand-link">
+    <img src="{% static 'dist/img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-heavy">Mulan Activity Center</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+                  with font-awesome or any other icon font library -->
+          {% url 'school:manage_parent' as manage_parent %}
+          {% url 'school:edit_parent' parent.id as edit_parent %}
+          {% url 'school:manage_student' as manage_student %}
+          {% url 'school:edit_student' id as edit_student %}
+          <li class="nav-item {% if request.path == manage_parent %} menu-open {% endif %}
+            {% if request.path == edit_parent %} menu-open {% endif %}
+            {% if request.path == manage_student  %} menu-open {% endif %}
+            {% if request.path == edit_student %} menu-open {% endif %}
+
+
+
+              ">
+
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-anchor"></i>
+              <p>
+                Parents & Students
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                {% url 'school:manage_parent' as manage_parent %}
+                {% url 'school:edit_parent' parent.id as edit_parent %}
+                {% url 'school:manage_student' as manage_student %}
+                {% url 'school:edit_student' id as edit_student %}
+
+
+                <a href="{{manage_parent}}" class="nav-link
+                {% if request.path == manage_parent %} active {% endif %}
+                {% if request.path == edit_parents %} active {% endif %}
+
+                ">
+                  <i class="fa fa-users nav-icon"></i>
+                  <p>Parents</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                {% url 'school:manage_student' as manage_student %}
+                {% url 'school:edit_student' id as edit_student %}
+                <a href="{{ manage_student }}" class="nav-link {% if request.path == edit_student  %} active {% endif %}
+                {% if request.path == manage_student  %} active {% endif %}">
+                  <i class="fas fa-user-graduate nav-icon"></i>
+                  <p>Students</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+
+
+                  {% url 'school:manage_attendance' as manage_attendance %}
+                  {% url 'school:create_attendance' as create_attendance %}
+                  {% url 'school:attendance_report' as  attendance_report %}
+                  <li class="nav-item {% if request.path == manage_attendance %} menu-open {% endif %}
+                   {% if request.path == create_attendance %} menu-open {% endif %}
+                   {% if request.path == attendance_report  %} menu-open {% endif %}
+
+
+
+
+                     ">
+
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-anchor"></i>
+                      <p>
+                        Attendance
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        {% url 'school:manage_attendance' as manage_attendance %}
+                        {% url 'school:create_attendance' as create_attendance %}
+
+
+
+                        <a href="{{manage_attendance}}" class="nav-link
+                        {% if request.path == manage_attendance %} active {% endif %}
+                        {% if request.path == create_attendance %} active {% endif %}
+
+                        ">
+                          <i class="fas fa-calendar-plus nav-icon"></i>
+                          <p>Create Attendance</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'school:attendance_report' as  attendance_report %}
+                        <a href="{{ attendance_report }}" class="nav-link {% if request.path == attendance_report  %} active {% endif %}">
+                          <i class="fas fa-calendar-plus nav-icon"></i>
+                          <p>Attendance Summery</p>
+                        </a>
+                      </li>
+
+                    </ul>
+                  </li>
+
+
+
+                {% url 'school:list_academic_terms' as list_academic_terms %}
+                {% url 'school:lists_class'  acadamic.id as lists_class %}
+                {% url 'school:lists_subject' classes.id academic_terms.id  as lists_subject %}
+                {% url 'school:select_class_students' classes.id academic_terms.id classess.id  as select_class_students %}
+                {% url 'school:generalreport' as generalreport %}
+                <li class="nav-item {% if request.path == list_academic_terms %} menu-open {% endif %}
+                 {% if request.path == lists_class %} menu-open {% endif %}
+                 {% if request.path == lists_subject  %} menu-open {% endif %}
+                 {% if request.path == manages_generalreport %} menu-open {% endif %}
+                 {% if request.path == generalreport   %} menu-open {% endif %}
+
+
+                   ">
+
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-anchor"></i>
+                    <p>
+                      Progress Report
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      {% url 'school:list_academic_terms' as list_academic_terms %}
+                      {% url 'school:lists_class'  acadamic.id as lists_class %}
+                      {% url 'school:lists_subject' classes.id academic_terms.id  as lists_subject %}
+                      {% url 'school:select_class_students' classes.id academic_terms.id classess.id  as select_class_students %}
+
+                      <a href="{{list_academic_terms}}" class="nav-link {% if request.path == list_academic_terms %} active {% endif %}
+                      {% if request.path == lists_class  %} active {% endif %}
+                      {% if request.path == lists_subject  %} active {% endif %}
+                      {% if request.path == select_class_students  %} active {% endif %}
+                      ">
+                        <i class="fas fa-calendar-plus nav-icon"></i>
+                        <p>Create Daily Reports</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      {% url 'school:view_lists_class' as view_lists_class %}
+                      <a href="{{ view_lists_class }}" class="nav-link {% if request.path == view_lists_class  %} active {% endif %}">
+                        <i class="fas fa-calendar-plus nav-icon"></i>
+                        <p>Progress Report</p>
+                      </a>
+                    </li>
+
+                  </ul>
+                </li>
+
+                  {% url 'school:manage_profiles' as manage_profiles %}
+                  {% url 'school:managereports' as managereports %}
+                  {% url 'school:manage_staff' as manage_staff %}
+                  <li class="nav-item {% if request.path == manage_profiles  %} menu-open {% endif %}
+                    {% if request.path == managereports %} menu-open {% endif %}
+                    {% if request.path == manage_staff %} menu-open {% endif %}
+
+                      ">
+
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-anchor"></i>
+                      <p>
+                        Human Resource
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        {% url 'school:manage_staff' as manage_staff %}
+                        <a href="{{ manage_staff }}" class="nav-link {% if request.path == manage_staff  %} active {% endif %}
+                        ">
+                          <i class="fas fa-user-graduate nav-icon"></i>
+                          <p>Staffs</p>
+                        </a>
+                      </li>
+
+
+                      <li class="nav-item">
+                        {% url 'school:manage_profiles' as manage_profiles %}
+
+
+
+                        <a href="{{manage_profiles}}" class="nav-link
+                        {% if request.path == manage_profiles  %} active {% endif %}
+
+
+                        ">
+                          <i class="fa fa-users nav-icon"></i>
+                          <p>Users</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'school:managereports' as managereports %}
+                        <a href="{{ managereports }}" class="nav-link {% if request.path == managereports  %} active {% endif %}
+                        ">
+                          <i class="fas fa-user-graduate nav-icon"></i>
+                          <p>Reports</p>
+                        </a>
+                      </li>
+                    </li>
+                  </ul>
+                  {% url 'shop:manage_category' as manage_category %}
+                  {% url 'shop:create_category' as create_category %}
+                  {% url 'shop:edit_category' a.id as edit_category %}
+                  {% url 'shop:manage_product' as manage_product %}
+                  {% url 'shop:manage_inventory' as manage_inventory %}
+                  {% url 'shop:closed_stock' as closed_stock %}
+                  {% url 'shop:manage_damages' as manage_damages %}
+                  {% url 'shop:create_damage' as create_damage %}
+                  {% url 'shop:pending_damages' as pending_damages %}
+                  {% url 'shop:daily_saless' as daily_saless %}
+                  {% url 'shop:manage_order' as manage_order %}
+
+                  {% url 'shop:manage_restock' as manage_restock %}
+                  {% url 'shop:pending_restock' as pending_restock %}
+                  <li class="nav-item {% if request.path == manage_category %} menu-open {% endif %}
+                   {% if request.path == create_category %} menu-open {% endif %}
+                   {% if request.path == edit_category %} menu-open {% endif %}
+                     {% if request.path == manage_product  %} menu-open {% endif %}
+                     {% if request.path == manage_inventory  %} menu-open {% endif %}
+                     {% if request.path == closed_stock  %} menu-open {% endif %}
+
+                     {% if request.path == manage_restock  %} menu-open {% endif %}
+                     {% if request.path == pending_restock  %} menu-open {% endif %}
+
+                     {% if request.path == manage_damages  %} menu-open {% endif %}
+                     {% if request.path == pending_damages  %} menu-open {% endif %}
+                     {% if request.path == daily_saless  %} menu-open {% endif %}
+                     {% if request.path == manage_order  %} menu-open {% endif %}
+
+                     ">
+
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-anchor"></i>
+                      <p>
+                        PartyTree Bakes
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        {% url 'shop:manage_category' as manage_category %}
+                        {% url 'shop:create_category' as create_category %}
+                        {% url 'shop:edit_category' pk as edit_category %}
+
+
+                        <a href="{{manage_category}}" class="nav-link {% if request.path == manage_category %} active {% endif %}
+                        {% if request.path == create_category %} active {% endif %}  ">
+                          <i class="fab fa-accusoft nav-icon"></i>
+                          <p>Manage Category</p>
+                        </a>
+                      </li>
+                      <!--<li class="nav-item">-->
+                      <!--  {% url 'shop:manage_product' as manage_product %}-->
+                      <!--  <a href="{{ manage_product }}" class="nav-link {% if request.path == manage_product  %} active {% endif %}">-->
+                      <!--    <i class="far fa-circle nav-icon"></i>-->
+                      <!--    <p>Manage Product</p>-->
+                      <!--  </a>-->
+                      <!--</li>-->
+
+                      <li class="nav-item">
+                        {% url 'shop:manage_inventory' as manage_inventory %}
+                        <a href="{{ manage_inventory }}" class="nav-link {% if request.path == manage_inventory %} active {% endif %}">
+                          <i class="nav-icon fa fa-list-alt"></i>
+                          <p>Inventory</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'shop:manage_order' as manage_order %}
+                        <a href="{{ manage_order }}" class="nav-link {% if request.path == manage_order %} active {% endif %}">
+                          <i class="nav-icon fa fa-list-alt"></i>
+                          <p>Orders</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'shop:closed_stock' as closed_stock %}
+                        <a href="{{ closed_stock }}" class="nav-link {% if request.path == closed_stock %} active {% endif %}">
+                          <i class="nav-icon fa fa-link"></i>
+                          <p>Closed Stock</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        {% url 'shop:manage_restock' as manage_restock %}
+                        <a href="{{ manage_restock }}" class="nav-link {% if request.path == manage_restock %} active {% endif %}">
+                          <i class="nav-icon fa fa-shopping-basket"></i>
+                          <p>Restock</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'shop:pending_restock' as pending_restock %}
+                        <a href="{{ pending_restock }}" class="nav-link {% if request.path == pending_restock %} active {% endif %}">
+                          <i class="nav-icon fa fa-shopping-basket"></i>
+                          <p>Pending Restock</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'shop:manage_damages' as manage_damages %}
+
+                        <a href="{{ manage_damages }}" class="nav-link {% if request.path == manage_damages %} active {% endif %}
+
+                        ">
+                          <i class="nav-icon fa fa-spinner"></i>
+                          <p>Damages</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'shop:pending_damages' as pending_damages %}
+                        <a href="{{ pending_damages }}" class="nav-link {% if request.path == pending_damages %} active {% endif %}
+
+                        ">
+                          <i class="nav-icon fa fa-spinner"></i>
+                          <p>Pending Damages</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        {% url 'shop:daily_saless' as daily_saless %}
+                        <a href="{{ daily_saless }}" class="nav-link {% if request.path == daily_saless  %} active {% endif %}">
+                          <i class="nav-icon fa fa-cut"></i>
+                          <p>Daily Sales</p>
+                        </a>
+                      </li>
+
+
+
+                    </ul>
+                  </li>
+
+                  {% url 'partytree:manage_category' as manage_category %}
+                  {% url 'partytree:create_category' as create_category %}
+                  {% url 'partytree:edit_category' a.id as edit_category %}
+                  {% url 'partytree:manage_product' as manage_product %}
+                  {% url 'partytree:manage_inventory' as manage_inventory %}
+                  {% url 'partytree:closed_stock' as closed_stock %}
+                  {% url 'partytree:daily_sales' as daily_sales %}
+                  {% url 'partytree:uploads_products' as uploads_products %}
+                  {% url 'partytree:restock_products' as restock_products %}
+
+                  {% url 'partytree:manage_restock' as manage_restock %}
+                  {% url 'partytree:pending_restock' as pending_restock %}
+
+                  {% url 'partytree:manage_damages' as manage_damages %}
+                  {% url 'partytree:create_damage' as create_damage %}
+                  {% url 'partytree:pending_damages' as pending_damages %}
+                  <li class="nav-item {% if request.path == manage_category %} menu-open {% endif %}
+                   {% if request.path == create_category %} menu-open {% endif %}
+                   {% if request.path == edit_category %} menu-open {% endif %}
+                     {% if request.path == manage_product  %} menu-open {% endif %}
+                     {% if request.path == manage_inventory  %} menu-open {% endif %}
+                     {% if request.path == closed_stock  %} menu-open {% endif %}
+
+                     {% if request.path == manage_restock  %} menu-open {% endif %}
+                     {% if request.path == pending_restock  %} menu-open {% endif %}
+                     {% if request.path == daily_sales   %} menu-open {% endif %}
+                     {% if request.path == uploads_products  %} menu-open {% endif %}
+                     {% if request.path == restock_products  %} menu-open {% endif %}
+                     {% if request.path == manage_damages  %} menu-open {% endif %}
+                     {% if request.path == create_damage  %} menu-open {% endif %}
+                     {% if request.path ==  pending_damages  %} menu-open {% endif %}
+                     ">
+
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-anchor"></i>
+                      <p>
+                        PartyTree
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+
+                      <li class="nav-item">
+                        {% url 'partytree:manage_category' as manage_category %}
+                        {% url 'partytree:create_category' as create_category %}
+                        {% url 'partytree:edit_category' pk as edit_category %}
+
+
+                        <a href="{{manage_category}}" class="nav-link {% if request.path == manage_category %} active {% endif %}
+                        {% if request.path == create_category %} active {% endif %}  ">
+                          <i class="fab fa-accusoft nav-icon"></i>
+                          <p>Manage Category</p>
+                        </a>
+                      </li>
+                      <!--<li class="nav-item">-->
+                      <!--  {% url 'partytree:manage_product' as manage_product %}-->
+                      <!--  <a href="{{ manage_product }}" class="nav-link {% if request.path == manage_product  %} active {% endif %}">-->
+                      <!--    <i class="far fa-circle nav-icon"></i>-->
+                      <!--    <p>Manage Product</p>-->
+                      <!--  </a>-->
+                      <!--</li>-->
+
+                      <li class="nav-item">
+                        {% url 'partytree:manage_inventory' as manage_inventory %}
+                        <a href="{{ manage_inventory }}" class="nav-link {% if request.path == manage_inventory %} active {% endif %}">
+                          <i class="nav-icon fa fa-list-alt"></i>
+                          <p>Inventory</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'partytree:closed_stock' as closed_stock %}
+                        <a href="{{ closed_stock }}" class="nav-link {% if request.path == closed_stock %} active {% endif %}">
+                          <i class="nav-icon fa fa-link"></i>
+                          <p>Closed Stock</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        {% url 'partytree:manage_restock' as manage_restock %}
+                        <a href="{{ manage_restock }}" class="nav-link {% if request.path == manage_restock %} active {% endif %}">
+                          <i class="nav-icon fa fa-shopping-basket"></i>
+                          <p>Restock</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'partytree:manage_damages' as manage_damages %}
+                        {% url 'partytree:create_damage' as create_damage %}
+                        <a href="{{ manage_damages }}" class="nav-link {% if request.path == manage_damages %} active {% endif %}
+                        {% if request.path == create_damage %} active {% endif %}
+                        ">
+                          <i class="nav-icon fa fa-spinner"></i>
+                          <p>Damages</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'partytree:pending_damages' as pending_damages %}
+                        <a href="{{ pending_damages }}" class="nav-link {% if request.path == pending_damages %} active {% endif %}
+
+                        ">
+                          <i class="nav-icon fa fa-spinner"></i>
+                          <p>Pending Damages</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        {% url 'partytree:daily_sales' as daily_sales %}
+                        <a href="{{ daily_sales }}" class="nav-link {% if request.path == daily_sales  %} active {% endif %}">
+                          <i class="nav-icon fa fa-cut"></i>
+                          <p>Daily Sales</p>
+                        </a>
+                      </li>
+
+                      <!--<li class="nav-item">-->
+
+                      <!--  {% url 'partytree:uploads_products' as uploads_products %}-->
+                      <!--  <a href="{{ uploads_products }}" class="nav-link {% if request.path == uploads_products %} active {% endif %}">-->
+                      <!--    <i class="nav-icon fa fa-cut"></i>-->
+                      <!--    <p>Upload Product</p>-->
+                      <!--  </a>-->
+                      <!--</li>-->
+
+                      <!--<li class="nav-item">-->
+                      <!--  {% url 'partytree:restock_products' as restock_products %}-->
+                      <!--  <a href="{{ restock_products}}" class="nav-link {% if request.path == restock_products %} active {% endif %}">-->
+                      <!--    <i class="nav-icon fa fa-cut"></i>-->
+                      <!--    <p>Restock Product</p>-->
+                      <!--  </a>-->
+                      <!--</li>-->
+
+                    </ul>
+                  </li>
+
+                {% url 'accounts:sales' as sales %}
+                <li class="nav-item
+                 {% if request.path == sales  %} menu-open {% endif %}
+
+                   ">
+                   {% url 'accounts:account_dashboards' as account_dashboards %}
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-anchor"></i>
+                    <p>
+                      Accounts
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+
+                    <li class="nav-item">
+                      {% url 'accounts:sales' as sales %}
+                      <a href="{{ sales }}" class="nav-link {% if request.path == sales %} active {% endif %}">
+                        <i class="fab fa-btc nav-icon"></i>
+                        <p>Revenue</p>
+                      </a>
+                    </li>
+
+
+
+
+                  </ul>
+                </li>
+                  <li class="nav-item
+
+                  {% if request.path == manage_acadamic %} menu-open {% endif %}
+                  {% if request.path == edit_acadamic  %} menu-open {% endif %}
+                  {% if request.path == manage_term  %} menu-open {% endif %}
+                  {% if request.path == manage_class  %} menu-open{% endif %}
+                  {% if request.path == add_class  %} menu-open {% endif %}
+                  {% if request.path == manage_subjects  %} menu-open{% endif %}
+                  {% if request.path == edit_subject   %} menu-open {% endif %}
+
+
+                     ">
+
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-anchor"></i>
+                      <p>
+                        Configuration
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        {% url 'school:manage_academicyear' as manage_acadamic %}
+                      {% url 'school:edit_academicyear' id as edit_acadamic %}
+
+                        <a href="{{manage_acadamic}}" class="nav-link {% if request.path == edit_acadamic %} active {% endif %}{% if request.path == manage_acadamic %} active {% endif %}
+
+                        ">
+                          <i class="fas fa-calendar-plus nav-icon"></i>
+                          <p>Academic Year</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'school:manage_academicterm' as manage_term %}
+                         <a href="{{ manage_term }}" class="nav-link {% if request.path == manage_term %} active {% endif %}">
+                            <i class="nav-icon fas fa-calendar-alt"></i>
+                            <p>
+                              Academic Term
+                            </p>
+                         </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'school:manage_class' as manage_class %}
+                        {% url 'school:add_class' as add_class %}
+                         <a href="{{ manage_class  }}" class="nav-link {% if request.path == manage_class  %} active {% endif %} {% if request.path == add_class  %} active {% endif %}">
+                            <i class="nav-icon fas fa-calendar-alt"></i>
+                            <p>
+                              Classes
+                            </p>
+                         </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'school:manage_subjects' as manage_subjects %}
+                        {% url 'school:edit_subject' parent.id as edit_subject %}
+                         <a href="{{ manage_subjects  }}" class="nav-link {% if request.path == manage_subjects  %} active {% endif %} {% if request.path == edit_subject  %} active {% endif %}">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                              Subjects
+                            </p>
+                         </a>
+                      </li>
+
+                    </ul>
+                  </li>
+
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+{% elif group.name == 'teacher' %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'school:dashboard' %}" class="brand-link">
+    <img src="{% static 'dist/img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-light">Mulan Activity Center</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+
+        <li class=bg-white class="nav-item">
+          <!-- {% url 'student_home' as student_home %} -->
+          <!-- {% if request.path == student_home %} active {% endif %} -->
+          <a href="{% url 'school:dashboard' %}" class="nav-link ">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Home
+              {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'school:staff_manage_attendance' as manage_attendance %}
+          {% url 'school:create_attendance' as create_attendance %}
+          <a href="{{ manage_attendance }}"
+            class="nav-link {% if request.path == manage_attendance %} active {% endif %} {% if request.path == create_attendance %} active {% endif %}">
+            <i class="nav-icon fas fa-calendar-plus"></i>
+            <p>
+              Manage Attendance
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'school:staff_attendance_report' as staff_attendance_report %}
+
+          <a href="{{ staff_attendance_report }}"
+            class="nav-link {% if request.path == staff_attendance_report %} active {% endif %}">
+            <i class="nav-icon fas fa-calendar-plus"></i>
+            <p>
+              Attendance Summery
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          {% url 'school:list_academic_terms' as list_academic_terms %}
+          {% url 'school:lists_class' acadamic.id as create_report %}
+          {% url 'school:lists_subject' classes.id academic_terms.id as lists_subject %}
+          {% url 'school:select_class_students' i.id academic_terms.id classess.id as select_class_students %}
+          {% url 'school:add_subject_report' classes.id academic_term.id student.id class_subject.id  as select_class_students %}
+          {% url 'school:upload_pic_report' rep.id  as upload_pic_report %}
+          <a href="{{ list_academic_terms }}"
+            class="nav-link {% if request.path == manage_dailyreport %} active {% endif %}
+             {% if request.path == create_report %} active {% endif %}
+             {% if request.path == lists_subject %} active {% endif %}
+             {% if request.path == select_class_students  %} active {% endif %}
+             {% if request.path == select_class_students %} active {% endif %}
+             {% if request.path == upload_pic_report %} active {% endif %}
+             ">
+
+            <i class="nav-icon fas fa-calendar-plus"></i>
+            <p>
+              Create Progress Report
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'school:staff_list_class' as staff_list_class %}
+          <a href="{{ staff_list_class }}" class="nav-link {% if request.path == staff_list_class %} active {% endif %}">
+            <i class="nav-icon fas fa-calendar-plus"></i>
+            <p>
+              Progress Report
+            </p>
+          </a>
+        </li>
+
+
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+{% elif group.name == 'parent' %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'school:parentdashboard' %}" class="brand-link">
+    <img src="{% static 'dist/img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-light">Mulan Activity Center</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+
+        <li class=bg-white class="nav-item">
+          <!-- {% url 'student_home' as student_home %} -->
+          <!-- {% if request.path == student_home %} active {% endif %} -->
+          <a href="{% url 'school:parentdashboard' %}" class="nav-link ">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Home
+              {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          {% url 'school:parent_topic_report' as parent_topic_report %}
+          <a href="{{ parent_topic_report }}" class="nav-link {% if request.path == parent_topic_report %} active {% endif %}">
+            <i class="nav-icon fas fa-calendar-plus"></i>
+            <p>
+              Daily Progress Report
+            </p>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+{% elif group.name == 'principal' %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'school:principaldashboard' %}" class="brand-link">
+    <img src="{% static 'dist/img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-heavy">Mulan Activity Center</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar mt-4">
+    <!-- Sidebar Menu -->
+    <nav class="mt-4">
+      <ul class="nav nav-pills nav-sidebar flex-column mt-4" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+                  with font-awesome or any other icon font library -->
+                  {% url 'school:manage_parent' as manage_parent %}
+                  {% url 'school:edit_parent' parent.id as edit_parent %}
+                  {% url 'school:manage_student' as manage_student %}
+                  {% url 'school:edit_student' id as edit_student %}
+                  <li class="nav-item {% if request.path == manage_parent %} menu-open {% endif %}
+                    {% if request.path == edit_parent %} menu-open {% endif %}
+                    {% if request.path == manage_student  %} menu-open {% endif %}
+                    {% if request.path == edit_student %} menu-open {% endif %}
+
+
+
+                      ">
+
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-anchor"></i>
+                      <p>
+                        Parents & Students
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        {% url 'school:manage_parent' as manage_parent %}
+                        {% url 'school:edit_parent' parent.id as edit_parent %}
+                        {% url 'school:manage_student' as manage_student %}
+                        {% url 'school:edit_student' id as edit_student %}
+
+
+                        <a href="{{manage_parent}}" class="nav-link
+                        {% if request.path == manage_parent %} active {% endif %}
+                        {% if request.path == edit_parents %} active {% endif %}
+
+                        ">
+                          <i class="fa fa-users nav-icon"></i>
+                          <p>Parents</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'school:manage_student' as manage_student %}
+                        {% url 'school:edit_student' id as edit_student %}
+                        <a href="{{ manage_student }}" class="nav-link {% if request.path == edit_student  %} active {% endif %}
+                        {% if request.path == manage_student  %} active {% endif %}">
+                          <i class="fas fa-user-graduate nav-icon"></i>
+                          <p>Students</p>
+                        </a>
+                      </li>
+
+                    </ul>
+                  </li>
+
+                  {% url 'school:manage_attendance' as manage_attendance %}
+                  {% url 'school:create_attendance' as create_attendance %}
+                  {% url 'school:attendance_report' as  attendance_report %}
+                  {% url 'school:manage_attendance' as  manage_attendance %}
+                  <li class="nav-item {% if request.path == manage_attendance %} menu-open {% endif %}
+                   {% if request.path == create_attendance %} menu-open {% endif %}
+                   {% if request.path == attendance_report  %} menu-open {% endif %}
+                    {% if request.path == manage_attendance  %} menu-open {% endif %}
+
+
+
+
+                     ">
+
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-anchor"></i>
+                      <p>
+                        Attendance
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        {% url 'school:manage_attendance' as manage_attendance %}
+                        {% url 'school:create_attendance' as create_attendance %}
+                        <!--{% url 'school:manage_attendance' as  manage_attendance %}-->
+
+
+
+                        <a href="{{manage_attendance}}" class="nav-link
+                        {% if request.path == manage_attendance %} active {% endif %}
+                        {% if request.path == create_attendance %} active {% endif %}
+
+                        ">
+                          <i class="fas fa-calendar-plus nav-icon"></i>
+                          <p>Create Attendance</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'school:attendance_report' as  attendance_report %}
+                        <a href="{{ attendance_report }}" class="nav-link {% if request.path == attendance_report  %} active {% endif %}">
+                          <i class="fas fa-calendar-plus nav-icon"></i>
+                          <p>Attendance Summery</p>
+                        </a>
+                      </li>
+
+                    </ul>
+                  </li>
+
+
+
+                {% url 'school:list_academic_terms' as list_academic_terms %}
+                {% url 'school:lists_class'  acadamic.id as lists_class %}
+                {% url 'school:lists_subject' classes.id academic_terms.id  as lists_subject %}
+                {% url 'school:select_class_students' classes.id academic_terms.id classess.id  as select_class_students %}
+                {% url 'school:generalreport' as generalreport %}
+                <li class="nav-item {% if request.path == list_academic_terms %} menu-open {% endif %}
+                 {% if request.path == lists_class %} menu-open {% endif %}
+                 {% if request.path == lists_subject  %} menu-open {% endif %}
+                 {% if request.path == manages_generalreport %} menu-open {% endif %}
+                 {% if request.path == generalreport   %} menu-open {% endif %}
+
+
+                   ">
+
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-anchor"></i>
+                    <p>
+                      Progress Report
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      {% url 'school:list_academic_terms' as list_academic_terms %}
+                      {% url 'school:lists_class'  acadamic.id as lists_class %}
+                      {% url 'school:lists_subject' classes.id academic_terms.id  as lists_subject %}
+                      {% url 'school:select_class_students' classes.id academic_terms.id classess.id  as select_class_students %}
+
+                      <a href="{{list_academic_terms}}" class="nav-link {% if request.path == list_academic_terms %} active {% endif %}
+                      {% if request.path == lists_class  %} active {% endif %}
+                      {% if request.path == lists_subject  %} active {% endif %}
+                      {% if request.path == select_class_students  %} active {% endif %}
+                      ">
+                        <i class="fas fa-calendar-plus nav-icon"></i>
+                        <p>Create Daily Reports</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      {% url 'school:view_lists_class' as view_lists_class %}
+                      <a href="{{ view_lists_class }}" class="nav-link {% if request.path == view_lists_class  %} active {% endif %}">
+                        <i class="fas fa-calendar-plus nav-icon"></i>
+                        <p>Progress Report</p>
+                      </a>
+                    </li>
+
+                  </ul>
+                </li>
+
+                  {% url 'school:manage_profiles' as manage_profiles %}
+                  {% url 'school:managereports' as managereports %}
+                  {% url 'school:manage_staff' as manage_staff %}
+                  <li class="nav-item {% if request.path == manage_profiles  %} menu-open {% endif %}
+                    {% if request.path == managereports %} menu-open {% endif %}
+                    {% if request.path == manage_staff %} menu-open {% endif %}
+
+                      ">
+
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-anchor"></i>
+                      <p>
+                        Human Resource
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        {% url 'school:manage_staff' as manage_staff %}
+                        <a href="{{ manage_staff }}" class="nav-link {% if request.path == manage_staff  %} active {% endif %}
+                        ">
+                          <i class="fas fa-user-graduate nav-icon"></i>
+                          <p>Staffs</p>
+                        </a>
+                      </li>
+
+
+                      <li class="nav-item">
+                        {% url 'school:manage_profiles' as manage_profiles %}
+
+
+
+                        <a href="{{manage_profiles}}" class="nav-link
+                        {% if request.path == manage_profiles  %} active {% endif %}
+
+
+                        ">
+                          <i class="fa fa-users nav-icon"></i>
+                          <p>Users</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'school:managereports' as managereports %}
+                        <a href="{{ managereports }}" class="nav-link {% if request.path == managereports  %} active {% endif %}
+                        ">
+                          <i class="fas fa-user-graduate nav-icon"></i>
+                          <p>Reports</p>
+                        </a>
+                      </li>
+
+                    </ul>
+                  </li>
+
+
+
+
+
+        {% url 'shop:manage_category' as manage_category %}
+        {% url 'shop:create_category' as create_category %}
+        {% url 'shop:edit_category' a.id as edit_category %}
+        {% url 'shop:manage_product' as manage_product %}
+        {% url 'shop:manage_inventory' as manage_inventory %}
+        {% url 'shop:closed_stock' as closed_stock %}
+        {% url 'shop:manage_damages' as manage_damages %}
+        {% url 'shop:create_damage' as create_damage %}
+        {% url 'shop:pending_damages' as pending_damages %}
+        {% url 'shop:daily_saless' as daily_saless %}
+
+        {% url 'shop:manage_restock' as manage_restock %}
+        {% url 'shop:pending_restock' as pending_restock %}
+        {% url 'shop:manage_shift' as manage_shift %}
+        {% url 'shop:admin_order' as admin_order %}
+        <li class="nav-item {% if request.path == manage_category %} menu-open {% endif %}
+         {% if request.path == create_category %} menu-open {% endif %}
+         {% if request.path == edit_category %} menu-open {% endif %}
+           {% if request.path == manage_product  %} menu-open {% endif %}
+           {% if request.path == manage_inventory  %} menu-open {% endif %}
+           {% if request.path == closed_stock  %} menu-open {% endif %}
+
+           {% if request.path == manage_restock  %} menu-open {% endif %}
+           {% if request.path == pending_restock  %} menu-open {% endif %}
+
+           {% if request.path == manage_damages  %} menu-open {% endif %}
+           {% if request.path == pending_damages  %} menu-open {% endif %}
+           {% if request.path == daily_saless  %} menu-open {% endif %}
+           {% if request.path == manage_shift   %} menu-open {% endif %}
+           {% if request.path == admin_order   %} menu-open {% endif %}
+           ">
+
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-anchor"></i>
+            <p>
+              PartyTree Bakes
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              {% url 'shop:manage_category' as manage_category %}
+              {% url 'shop:create_category' as create_category %}
+              {% url 'shop:edit_category' pk as edit_category %}
+
+
+              <a href="{{manage_category}}" class="nav-link {% if request.path == manage_category %} active {% endif %}
+              {% if request.path == create_category %} active {% endif %}  ">
+                <i class="fab fa-accusoft nav-icon"></i>
+                <p>Manage Category</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'shop:manage_product' as manage_product %}
+              <a href="{{ manage_product }}" class="nav-link {% if request.path == manage_product  %} active {% endif %}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Product</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'shop:manage_inventory' as manage_inventory %}
+              <a href="{{ manage_inventory }}" class="nav-link {% if request.path == manage_inventory %} active {% endif %}">
+                <i class="nav-icon fa fa-list-alt"></i>
+                <p>Inventory</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'shop:closed_stock' as closed_stock %}
+              <a href="{{ closed_stock }}" class="nav-link {% if request.path == closed_stock %} active {% endif %}">
+                <i class="nav-icon fa fa-link"></i>
+                <p>Closed Stock</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'shop:manage_restock' as manage_restock %}
+              <a href="{{ manage_restock }}" class="nav-link {% if request.path == manage_restock %} active {% endif %}">
+                <i class="nav-icon fa fa-shopping-basket"></i>
+                <p>Restock</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'shop:pending_restock' as pending_restock %}
+              <a href="{{ pending_restock }}" class="nav-link {% if request.path == pending_restock %} active {% endif %}">
+                <i class="nav-icon fa fa-shopping-basket"></i>
+                <p>Pending Restock</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'shop:manage_damages' as manage_damages %}
+
+              <a href="{{ manage_damages }}" class="nav-link {% if request.path == manage_damages %} active {% endif %}
+
+              ">
+                <i class="nav-icon fa fa-spinner"></i>
+                <p>Damages</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'shop:pending_damages' as pending_damages %}
+              <a href="{{ pending_damages }}" class="nav-link {% if request.path == pending_damages %} active {% endif %}
+
+              ">
+                <i class="nav-icon fa fa-spinner"></i>
+                <p>Pending Damages</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'shop:daily_saless' as daily_saless %}
+              <a href="{{ daily_saless }}" class="nav-link {% if request.path == daily_saless  %} active {% endif %}">
+                <i class="nav-icon fa fa-cut"></i>
+                <p>Daily Sales</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'shop:manage_shift' as manage_shift %}
+              <a href="{{ manage_shift }}" class="nav-link {% if request.path == manage_shift %} active {% endif %}">
+                <i class="nav-icon fa fa-cut"></i>
+                <p>Shifts</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'shop:admin_order' as admin_order %}
+              <a href="{{ admin_order }}" class="nav-link {% if request.path == admin_order %} active {% endif %}">
+                <i class="nav-icon fa fa-cut"></i>
+                <p>Orders</p>
+              </a>
+            </li>
+
+
+
+          </ul>
+        </li>
+
+
+
+
+        {% url 'partytree:manage_category' as manage_category %}
+        {% url 'partytree:create_category' as create_category %}
+        {% url 'partytree:edit_category' a.id as edit_category %}
+        {% url 'partytree:manage_product' as manage_product %}
+        {% url 'partytree:manage_inventory' as manage_inventory %}
+        {% url 'partytree:closed_stock' as closed_stock %}
+        {% url 'partytree:daily_sales' as daily_sales %}
+        {% url 'partytree:uploads_products' as uploads_products %}
+        {% url 'partytree:restock_products' as restock_products %}
+
+        {% url 'partytree:manage_restock' as manage_restock %}
+        {% url 'partytree:pending_restock' as pending_restock %}
+
+        {% url 'partytree:manage_damages' as manage_damages %}
+        {% url 'partytree:create_damage' as create_damage %}
+        {% url 'partytree:pending_damages' as pending_damages %}
+        <li class="nav-item {% if request.path == manage_category %} menu-open {% endif %}
+         {% if request.path == create_category %} menu-open {% endif %}
+         {% if request.path == edit_category %} menu-open {% endif %}
+           {% if request.path == manage_product  %} menu-open {% endif %}
+           {% if request.path == manage_inventory  %} menu-open {% endif %}
+           {% if request.path == closed_stock  %} menu-open {% endif %}
+
+           {% if request.path == manage_restock  %} menu-open {% endif %}
+           {% if request.path == pending_restock  %} menu-open {% endif %}
+           {% if request.path == daily_sales   %} menu-open {% endif %}
+           {% if request.path == uploads_products  %} menu-open {% endif %}
+           {% if request.path == restock_products  %} menu-open {% endif %}
+           {% if request.path == manage_damages  %} menu-open {% endif %}
+           {% if request.path == create_damage  %} menu-open {% endif %}
+           {% if request.path ==  pending_damages  %} menu-open {% endif %}
+           ">
+
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-anchor"></i>
+            <p>
+              PartyTree
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+
+
+            <li class="nav-item">
+              {% url 'partytree:manage_category' as manage_category %}
+              {% url 'partytree:create_category' as create_category %}
+              {% url 'partytree:edit_category' pk as edit_category %}
+
+
+              <a href="{{manage_category}}" class="nav-link {% if request.path == manage_category %} active {% endif %}
+              {% if request.path == create_category %} active {% endif %}  ">
+                <i class="fab fa-accusoft nav-icon"></i>
+                <p>Manage Category</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'partytree:manage_product' as manage_product %}
+              <a href="{{ manage_product }}" class="nav-link {% if request.path == manage_product  %} active {% endif %}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Product</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'partytree:manage_inventory' as manage_inventory %}
+              <a href="{{ manage_inventory }}" class="nav-link {% if request.path == manage_inventory %} active {% endif %}">
+                <i class="nav-icon fa fa-list-alt"></i>
+                <p>Inventory</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'partytree:closed_stock' as closed_stock %}
+              <a href="{{ closed_stock }}" class="nav-link {% if request.path == closed_stock %} active {% endif %}">
+                <i class="nav-icon fa fa-link"></i>
+                <p>Closed Stock</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'partytree:manage_restock' as manage_restock %}
+              <a href="{{ manage_restock }}" class="nav-link {% if request.path == manage_restock %} active {% endif %}">
+                <i class="nav-icon fa fa-shopping-basket"></i>
+                <p>Restock</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'partytree:manage_damages' as manage_damages %}
+              {% url 'partytree:create_damage' as create_damage %}
+              <a href="{{ manage_damages }}" class="nav-link {% if request.path == manage_damages %} active {% endif %}
+              {% if request.path == create_damage %} active {% endif %}
+              ">
+                <i class="nav-icon fa fa-spinner"></i>
+                <p>Damages</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'partytree:pending_damages' as pending_damages %}
+              <a href="{{ pending_damages }}" class="nav-link {% if request.path == pending_damages %} active {% endif %}
+
+              ">
+                <i class="nav-icon fa fa-spinner"></i>
+                <p>Pending Damages</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'partytree:daily_sales' as daily_sales %}
+              <a href="{{ daily_sales }}" class="nav-link {% if request.path == daily_sales  %} active {% endif %}">
+                <i class="nav-icon fa fa-cut"></i>
+                <p>Daily Sales</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+
+              {% url 'partytree:uploads_products' as uploads_products %}
+              <a href="{{ uploads_products }}" class="nav-link {% if request.path == uploads_products %} active {% endif %}">
+                <i class="nav-icon fa fa-cut"></i>
+                <p>Upload Product</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'partytree:restock_products' as restock_products %}
+              <a href="{{ restock_products}}" class="nav-link {% if request.path == restock_products %} active {% endif %}">
+                <i class="nav-icon fa fa-cut"></i>
+                <p>Restock Product</p>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+
+        {% url 'accounts:manage_accounts' as manage_accounts %}
+        {% url 'accounts:general_ledger' as general_ledger %}
+        {% url 'accounts:manage_pv' as manage_pv %}
+        {% url 'accounts:manage_payables' as manage_payables %}
+        {% url 'accounts:manage_receivables' as manage_receivables %}
+        {% url 'accounts:students' as students %}
+        {% url 'accounts:list_active_academic_terms' student.id as list_active_academic_terms %}
+        {% url 'accounts:create_bill' acadamic.id student.id as create_bill %}
+        {% url 'accounts:student_bill_details' bill.id as student_bill_details %}
+        {% url 'accounts:manage_bills'  as manage_bills %}
+        {% url 'shop:manage_closingstock_summery' as manage_closingstock_summery %}
+        {% url 'partytree:pmanage_closingstock_summery' as pmanage_closingstock_summery %}
+        {% url 'accounts:manage_transfer' as manage_transfer %}
+        {% url 'accounts:sales' as sales %}
+        <li class="nav-item {% if request.path == manage_accounts %} menu-open {% endif %}
+         {% if request.path == general_ledger %} menu-open {% endif %}
+         {% if request.path == manage_pv%} menu-open {% endif %}
+         {% if request.path == manage_payables %} menu-open {% endif %}
+         {% if request.path == manage_receivables   %} menu-open {% endif %}
+         {% if request.path == manage_closingstock_summery %} menu-open {% endif %}
+         {% if request.path == pmanage_closingstock_summery  %} menu-open {% endif %}
+
+         {% if request.path == students  %} menu-open {% endif %}
+         {% if request.path == list_active_academic_terms  %} menu-open {% endif %}
+         {% if request.path == create_bill  %} menu-open {% endif %}
+         {% if request.path == student_bill_details  %} menu-open {% endif %}
+         {% if request.path == manage_bills  %} menu-open {% endif %}
+         {% if request.path == manage_transfer  %} menu-open {% endif %}
+         {% if request.path == sales  %} menu-open {% endif %}
+
+           ">
+           {% url 'accounts:account_dashboards' as account_dashboards %}
+          <a href="{{ account_dashboards }}" class="nav-link">
+            <i class="nav-icon fas fa-anchor"></i>
+            <p>
+              Accounts
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              {% url 'accounts:manage_accounts' as manage_accounts %}
+
+
+
+              <a href="{{manage_accounts}}" class="nav-link {% if request.path == manage_accounts %} active {% endif %}">
+                <i class="fab fa-accusoft nav-icon"></i>
+                <p>Account Codes</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'accounts:general_ledger' as general_ledger %}
+              <a href="{{ general_ledger }}" class="nav-link {% if request.path == general_ledger  %} active {% endif %}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>General Ledger</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'accounts:manage_transfer' as manage_transfer %}
+              <a href="{{ manage_transfer }}" class="nav-link {% if request.path == manage_transfer  %} active {% endif %}">
+                <i class="fas fa-chart-line nav-icon"></i>
+                <p>Transfers</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'accounts:manage_pv' as manage_pv %}
+              <a href="{{ manage_pv }}" class="nav-link {% if request.path == manage_pv %} active {% endif %}">
+                <i class="fas fa-balance-scale nav-icon"></i>
+                <p>Payment Voucher </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'accounts:manage_receivables' as manage_receivables %}
+              <a href="{{ manage_receivables }}" class="nav-link {% if request.path == manage_receivables %} active {% endif %}">
+                <i class="fas fa-comments-dollar nav-icon"></i>
+                <p>Recievable</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'accounts:manage_payables' as manage_payables %}
+              <a href="{{ manage_payables }}" class="nav-link {% if request.path == manage_payables %} active {% endif %}">
+                <i class="fab fa-btc nav-icon"></i>
+                <p>Payables</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'accounts:students' as students %}
+              {% url 'accounts:list_active_academic_terms' student.id as list_active_academic_terms %}
+              {% url 'accounts:create_bill' acadamic.id student.id as create_bill %}
+              {% url 'accounts:student_bill_details' bill.id as student_bill_details %}
+              <a href="{{ students }}" class="nav-link
+              {% if request.path == students %} active {% endif %}
+              {% if request.path == list_active_academic_terms %} active {% endif %}
+              {% if request.path == create_bill %} active {% endif %}
+              {% if request.path == student_bill_details %} active {% endif %}
+              ">
+                <i class="fab fa-btc nav-icon"></i>
+                <p>Create Bill</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'accounts:manage_bills'  as manage_bills %}
+              <a href="{{ manage_bills }}" class="nav-link {% if request.path == manage_bills %} active {% endif %}">
+                <i class="far fas fa-chart-line nav-icon"></i>
+                <p>Student Bill</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'accounts:sales' as sales %}
+              <a href="{{ sales }}" class="nav-link {% if request.path == sales %} active {% endif %}">
+                <i class="fab fa-btc nav-icon"></i>
+                <p>Revenue</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'shop:manage_closingstock_summery' as manage_closingstock_summery %}
+              <a href="{{ manage_closingstock_summery }}" class="nav-link {% if request.path == manage_closingstock_summery %} active {% endif %}">
+                <i class="far fas fa-chart-line nav-icon"></i>
+                <p>Bakes closing Stock</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'partytree:pmanage_closingstock_summery' as pmanage_closingstock_summery %}
+              <a href="{{ pmanage_closingstock_summery }}" class="nav-link {% if request.path == pmanage_closingstock_summery %} active {% endif %}">
+                <i class="fas fa-balance-scale-right nav-icon"></i>
+                <p>PartyTree Closing Stock </p>
+              </a>
+            </li>
+
+
+
+          </ul>
+        </li>
+        {% url 'school:manage_academicyear' as manage_acadamic %}
+        {% url 'school:edit_academicyear' id as edit_acadamic %}
+        {% url 'school:manage_academicterm' as manage_term %}
+        {% url 'school:manage_class' as manage_class %}
+        {% url 'school:add_class' as add_class %}
+        {% url 'school:manage_subjects' as manage_subjects %}
+        {% url 'school:edit_subject' parent.id as edit_subject %}
+        <li class="nav-item
+
+        {% if request.path == manage_acadamic %} menu-open {% endif %}
+        {% if request.path == edit_acadamic  %} menu-open {% endif %}
+        {% if request.path == manage_term  %} menu-open {% endif %}
+        {% if request.path == manage_class  %} menu-open{% endif %}
+        {% if request.path == add_class  %} menu-open {% endif %}
+        {% if request.path == manage_subjects  %} menu-open{% endif %}
+        {% if request.path == edit_subject   %} menu-open {% endif %}
+
+
+           ">
+
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-anchor"></i>
+            <p>
+              Configuration
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              {% url 'school:manage_academicyear' as manage_acadamic %}
+            {% url 'school:edit_academicyear' id as edit_acadamic %}
+
+              <a href="{{manage_acadamic}}" class="nav-link {% if request.path == edit_acadamic %} active {% endif %}{% if request.path == manage_acadamic %} active {% endif %}
+
+              ">
+                <i class="fas fa-calendar-plus nav-icon"></i>
+                <p>Academic Year</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'school:manage_academicterm' as manage_term %}
+               <a href="{{ manage_term }}" class="nav-link {% if request.path == manage_term %} active {% endif %}">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+                  <p>
+                    Academic Term
+                  </p>
+               </a>
+            </li>
+            <li class="nav-item">
+              {% url 'school:manage_class' as manage_class %}
+              {% url 'school:add_class' as add_class %}
+               <a href="{{ manage_class  }}" class="nav-link {% if request.path == manage_class  %} active {% endif %} {% if request.path == add_class  %} active {% endif %}">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+                  <p>
+                    Classes
+                  </p>
+               </a>
+            </li>
+            <li class="nav-item">
+              {% url 'school:manage_subjects' as manage_subjects %}
+              {% url 'school:edit_subject' parent.id as edit_subject %}
+               <a href="{{ manage_subjects  }}" class="nav-link {% if request.path == manage_subjects  %} active {% endif %} {% if request.path == edit_subject  %} active {% endif %}">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Subjects
+                  </p>
+               </a>
+            </li>
+
+          </ul>
+        </li>
+
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+{% elif group.name == 'manager' %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'school:managerdashboard' %}" class="brand-link">
+    <img src="{% static 'dist/img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-heavy">Mulan Activity Center</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+                  with font-awesome or any other icon font library -->
+
+                  {% url 'shop:manage_category' as manage_category %}
+                  {% url 'shop:create_category' as create_category %}
+                  {% url 'shop:edit_category' a.id as edit_category %}
+                  {% url 'shop:manage_product' as manage_product %}
+                  {% url 'shop:manage_inventory' as manage_inventory %}
+                  {% url 'shop:closed_stock' as closed_stock %}
+                  {% url 'shop:manage_damages' as manage_damages %}
+                  {% url 'shop:create_damage' as create_damage %}
+                  {% url 'shop:pending_damages' as pending_damages %}
+                  {% url 'shop:daily_saless' as daily_saless %}
+                   {% url 'shop:admin_order' as admin_order %}
+
+                  {% url 'shop:manage_restock' as manage_restock %}
+                  {% url 'shop:pending_restock' as pending_restock %}
+                  {% url 'shop:manage_shift' as manage_shift %}
+                  <li class="nav-item {% if request.path == manage_category %} menu-open {% endif %}
+                   {% if request.path == create_category %} menu-open {% endif %}
+                   {% if request.path == edit_category %} menu-open {% endif %}
+                     {% if request.path == manage_product  %} menu-open {% endif %}
+                     {% if request.path == manage_inventory  %} menu-open {% endif %}
+                     {% if request.path == closed_stock  %} menu-open {% endif %}
+
+                     {% if request.path == manage_restock  %} menu-open {% endif %}
+                     {% if request.path == pending_restock  %} menu-open {% endif %}
+
+                     {% if request.path == manage_damages  %} menu-open {% endif %}
+                     {% if request.path == pending_damages  %} menu-open {% endif %}
+                     {% if request.path == daily_saless  %} menu-open {% endif %}
+                     {% if request.path == admin_order  %} menu-open {% endif %}
+                      {% if request.path == manage_shift  %} menu-open {% endif %}
+
+                     ">
+
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-anchor"></i>
+                      <p>
+                        PartyTree Bakes
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        {% url 'shop:manage_category' as manage_category %}
+                        {% url 'shop:create_category' as create_category %}
+                        {% url 'shop:edit_category' pk as edit_category %}
+
+
+                        <a href="{{manage_category}}" class="nav-link {% if request.path == manage_category %} active {% endif %}
+                        {% if request.path == create_category %} active {% endif %}  ">
+                          <i class="fab fa-accusoft nav-icon"></i>
+                          <p>Manage Category</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'shop:manage_product' as manage_product %}
+                        <a href="{{ manage_product }}" class="nav-link {% if request.path == manage_product  %} active {% endif %}">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Manage Product</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        {% url 'shop:manage_inventory' as manage_inventory %}
+                        <a href="{{ manage_inventory }}" class="nav-link {% if request.path == manage_inventory %} active {% endif %}">
+                          <i class="nav-icon fa fa-list-alt"></i>
+                          <p>Inventory</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'shop:admin_order' as admin_order %}
+                        <a href="{{ admin_order }}" class="nav-link {% if request.path == admin_order %} active {% endif %}">
+                          <i class="nav-icon fa fa-list-alt"></i>
+                          <p>Orders</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'shop:closed_stock' as closed_stock %}
+                        <a href="{{ closed_stock }}" class="nav-link {% if request.path == closed_stock %} active {% endif %}">
+                          <i class="nav-icon fa fa-link"></i>
+                          <p>Closed Stock</p>
+                        </a>
+                      </li>
+                     <li class="nav-item">
+                        {% url 'shop:manage_shift' as manage_shift %}
+                        <a href="{{ manage_shift}}" class="nav-link {% if request.path == manage_shift %} active {% endif %}">
+                          <i class="nav-icon fa fa-link"></i>
+                          <p>Shifts</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        {% url 'shop:manage_restock' as manage_restock %}
+                        <a href="{{ manage_restock }}" class="nav-link {% if request.path == manage_restock %} active {% endif %}">
+                          <i class="nav-icon fa fa-shopping-basket"></i>
+                          <p>Restock</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'shop:pending_restock' as pending_restock %}
+                        <a href="{{ pending_restock }}" class="nav-link {% if request.path == pending_restock %} active {% endif %}">
+                          <i class="nav-icon fa fa-shopping-basket"></i>
+                          <p>Pending Restock</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'shop:manage_damages' as manage_damages %}
+
+                        <a href="{{ manage_damages }}" class="nav-link {% if request.path == manage_damages %} active {% endif %}
+
+                        ">
+                          <i class="nav-icon fa fa-spinner"></i>
+                          <p>Damages</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'shop:pending_damages' as pending_damages %}
+                        <a href="{{ pending_damages }}" class="nav-link {% if request.path == pending_damages %} active {% endif %}
+
+                        ">
+                          <i class="nav-icon fa fa-spinner"></i>
+                          <p>Pending Damages</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        {% url 'shop:daily_saless' as daily_saless %}
+                        <a href="{{ daily_saless }}" class="nav-link {% if request.path == daily_saless  %} active {% endif %}">
+                          <i class="nav-icon fa fa-cut"></i>
+                          <p>Daily Sales</p>
+                        </a>
+                      </li>
+
+
+
+                    </ul>
+                  </li>
+
+                  {% url 'partytree:manage_category' as manage_category %}
+                  {% url 'partytree:create_category' as create_category %}
+                  {% url 'partytree:edit_category' a.id as edit_category %}
+                  {% url 'partytree:manage_product' as manage_product %}
+                  {% url 'partytree:manage_inventory' as manage_inventory %}
+                  {% url 'partytree:closed_stock' as closed_stock %}
+                  {% url 'partytree:daily_sales' as daily_sales %}
+                  {% url 'partytree:uploads_products' as uploads_products %}
+                  {% url 'partytree:restock_products' as restock_products %}
+
+                  {% url 'partytree:manage_restock' as manage_restock %}
+                  {% url 'partytree:pending_restock' as pending_restock %}
+
+                  {% url 'partytree:manage_damages' as manage_damages %}
+                  {% url 'partytree:create_damage' as create_damage %}
+                  {% url 'partytree:pending_damages' as pending_damages %}
+                  <li class="nav-item {% if request.path == manage_category %} menu-open {% endif %}
+                   {% if request.path == create_category %} menu-open {% endif %}
+                   {% if request.path == edit_category %} menu-open {% endif %}
+                     {% if request.path == manage_product  %} menu-open {% endif %}
+                     {% if request.path == manage_inventory  %} menu-open {% endif %}
+                     {% if request.path == closed_stock  %} menu-open {% endif %}
+
+                     {% if request.path == manage_restock  %} menu-open {% endif %}
+                     {% if request.path == pending_restock  %} menu-open {% endif %}
+                     {% if request.path == daily_sales   %} menu-open {% endif %}
+                     {% if request.path == uploads_products  %} menu-open {% endif %}
+                     {% if request.path == restock_products  %} menu-open {% endif %}
+                     {% if request.path == manage_damages  %} menu-open {% endif %}
+                     {% if request.path == create_damage  %} menu-open {% endif %}
+                     {% if request.path ==  pending_damages  %} menu-open {% endif %}
+                     ">
+
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-anchor"></i>
+                      <p>
+                        PartyTree
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+
+                      <li class="nav-item">
+                        {% url 'partytree:manage_category' as manage_category %}
+                        {% url 'partytree:create_category' as create_category %}
+                        {% url 'partytree:edit_category' pk as edit_category %}
+
+
+                        <a href="{{manage_category}}" class="nav-link {% if request.path == manage_category %} active {% endif %}
+                        {% if request.path == create_category %} active {% endif %}  ">
+                          <i class="fab fa-accusoft nav-icon"></i>
+                          <p>Manage Category</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'partytree:manage_product' as manage_product %}
+                        <a href="{{ manage_product }}" class="nav-link {% if request.path == manage_product  %} active {% endif %}">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Manage Product</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        {% url 'partytree:manage_inventory' as manage_inventory %}
+                        <a href="{{ manage_inventory }}" class="nav-link {% if request.path == manage_inventory %} active {% endif %}">
+                          <i class="nav-icon fa fa-list-alt"></i>
+                          <p>Inventory</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'partytree:closed_stock' as closed_stock %}
+                        <a href="{{ closed_stock }}" class="nav-link {% if request.path == closed_stock %} active {% endif %}">
+                          <i class="nav-icon fa fa-link"></i>
+                          <p>Closed Stock</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        {% url 'partytree:manage_restock' as manage_restock %}
+                        <a href="{{ manage_restock }}" class="nav-link {% if request.path == manage_restock %} active {% endif %}">
+                          <i class="nav-icon fa fa-shopping-basket"></i>
+                          <p>Restock</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'partytree:manage_damages' as manage_damages %}
+                        {% url 'partytree:create_damage' as create_damage %}
+                        <a href="{{ manage_damages }}" class="nav-link {% if request.path == manage_damages %} active {% endif %}
+                        {% if request.path == create_damage %} active {% endif %}
+                        ">
+                          <i class="nav-icon fa fa-spinner"></i>
+                          <p>Damages</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        {% url 'partytree:pending_damages' as pending_damages %}
+                        <a href="{{ pending_damages }}" class="nav-link {% if request.path == pending_damages %} active {% endif %}
+
+                        ">
+                          <i class="nav-icon fa fa-spinner"></i>
+                          <p>Pending Damages</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        {% url 'partytree:daily_sales' as daily_sales %}
+                        <a href="{{ daily_sales }}" class="nav-link {% if request.path == daily_sales  %} active {% endif %}">
+                          <i class="nav-icon fa fa-cut"></i>
+                          <p>Daily Sales</p>
+                        </a>
+                      </li>
+
+                      <!--<li class="nav-item">-->
+
+                      <!--  {% url 'partytree:uploads_products' as uploads_products %}-->
+                      <!--  <a href="{{ uploads_products }}" class="nav-link {% if request.path == uploads_products %} active {% endif %}">-->
+                      <!--    <i class="nav-icon fa fa-cut"></i>-->
+                      <!--    <p>Upload Product</p>-->
+                      <!--  </a>-->
+                      <!--</li>-->
+
+                      <!--<li class="nav-item">-->
+                      <!--  {% url 'partytree:restock_products' as restock_products %}-->
+                      <!--  <a href="{{ restock_products}}" class="nav-link {% if request.path == restock_products %} active {% endif %}">-->
+                      <!--    <i class="nav-icon fa fa-cut"></i>-->
+                      <!--    <p>Restock Product</p>-->
+                      <!--  </a>-->
+                      <!--</li>-->
+
+                    </ul>
+                  </li>
+
+                {% url 'accounts:sales' as sales %}
+                <li class="nav-item
+                 {% if request.path == sales  %} menu-open {% endif %}
+
+                   ">
+                   {% url 'accounts:account_dashboards' as account_dashboards %}
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-anchor"></i>
+                    <p>
+                      Accounts
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+
+                    <li class="nav-item">
+                      {% url 'accounts:sales' as sales %}
+                      <a href="{{ sales }}" class="nav-link {% if request.path == sales %} active {% endif %}">
+                        <i class="fab fa-btc nav-icon"></i>
+                        <p>Revenue</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+
+
+
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+{% elif group.name == 'account' %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'accounts:account_dashboards' %}" class="brand-link">
+    <img src="{% static 'dist/img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-heavy">Mulan Activity Center</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+                  with font-awesome or any other icon font library -->
+        <br>
+        <li class=bg-white class="nav-item">
+          <a href="{% url 'accounts:account_dashboards' %}" class="nav-link ">
+            <i class="nav-icon fas fa-cog"></i>
+            <p>
+              Home
+              {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+            </p>
+          </a>
+        </li>
+           {% url 'accounts:manage_accounts' as manage_accounts %}
+        {% url 'accounts:general_ledger' as general_ledger %}
+        {% url 'accounts:manage_pv' as manage_pv %}
+        {% url 'accounts:manage_payables' as manage_payables %}
+        {% url 'accounts:manage_receivables' as manage_receivables %}
+        {% url 'accounts:students' as students %}
+        {% url 'accounts:list_active_academic_terms' student.id as list_active_academic_terms %}
+        {% url 'accounts:create_bill' acadamic.id student.id as create_bill %}
+        {% url 'accounts:student_bill_details' bill.id as student_bill_details %}
+        {% url 'accounts:manage_bills'  as manage_bills %}
+        {% url 'shop:manage_closingstock_summery' as manage_closingstock_summery %}
+        {% url 'partytree:pmanage_closingstock_summery' as pmanage_closingstock_summery %}
+        {% url 'accounts:manage_transfer' as manage_transfer %}
+        {% url 'accounts:sales' as sales %}
+        {% url 'school:list_hostbill' as list_hostbill %}
+        <li class="nav-item {% if request.path == manage_accounts %} menu-open {% endif %}
+         {% if request.path == general_ledger %} menu-open {% endif %}
+         {% if request.path == manage_pv%} menu-open {% endif %}
+         {% if request.path == manage_payables %} menu-open {% endif %}
+         {% if request.path == manage_receivables   %} menu-open {% endif %}
+         {% if request.path == manage_closingstock_summery %} menu-open {% endif %}
+         {% if request.path == pmanage_closingstock_summery  %} menu-open {% endif %}
+
+         {% if request.path == students  %} menu-open {% endif %}
+         {% if request.path == list_active_academic_terms  %} menu-open {% endif %}
+         {% if request.path == create_bill  %} menu-open {% endif %}
+         {% if request.path == student_bill_details  %} menu-open {% endif %}
+         {% if request.path == manage_bills  %} menu-open {% endif %}
+         {% if request.path == manage_transfer  %} menu-open {% endif %}
+         {% if request.path == sales  %} menu-open {% endif %}
+         {% if request.path == list_hostbill  %} menu-open {% endif %}
+
+           ">
+           {% url 'accounts:account_dashboards' as account_dashboards %}
+          <a href="{{ account_dashboards }}" class="nav-link">
+            <i class="nav-icon fas fa-anchor"></i>
+            <p>
+              Accounts
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              {% url 'accounts:manage_accounts' as manage_accounts %}
+
+
+
+              <a href="{{manage_accounts}}" class="nav-link {% if request.path == manage_accounts %} active {% endif %}">
+                <i class="fab fa-accusoft nav-icon"></i>
+                <p>Account Codes</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'accounts:general_ledger' as general_ledger %}
+              <a href="{{ general_ledger }}" class="nav-link {% if request.path == general_ledger  %} active {% endif %}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>General Ledger</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'accounts:manage_transfer' as manage_transfer %}
+              <a href="{{ manage_transfer }}" class="nav-link {% if request.path == manage_transfer  %} active {% endif %}">
+                <i class="fas fa-chart-line nav-icon"></i>
+                <p>Transfers</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'accounts:manage_pv' as manage_pv %}
+              <a href="{{ manage_pv }}" class="nav-link {% if request.path == manage_pv %} active {% endif %}">
+                <i class="fas fa-balance-scale nav-icon"></i>
+                <p>Payment Voucher </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'accounts:manage_receivables' as manage_receivables %}
+              <a href="{{ manage_receivables }}" class="nav-link {% if request.path == manage_receivables %} active {% endif %}">
+                <i class="fas fa-comments-dollar nav-icon"></i>
+                <p>Recievable</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'accounts:manage_payables' as manage_payables %}
+              <a href="{{ manage_payables }}" class="nav-link {% if request.path == manage_payables %} active {% endif %}">
+                <i class="fab fa-btc nav-icon"></i>
+                <p>Payables</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'accounts:students' as students %}
+              {% url 'accounts:list_active_academic_terms' student.id as list_active_academic_terms %}
+              {% url 'accounts:create_bill' acadamic.id student.id as create_bill %}
+              {% url 'accounts:student_bill_details' bill.id as student_bill_details %}
+              <a href="{{ students }}" class="nav-link
+              {% if request.path == students %} active {% endif %}
+              {% if request.path == list_active_academic_terms %} active {% endif %}
+              {% if request.path == create_bill %} active {% endif %}
+              {% if request.path == student_bill_details %} active {% endif %}
+              ">
+                <i class="fab fa-btc nav-icon"></i>
+                <p>Create Bill</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'accounts:manage_bills'  as manage_bills %}
+              <a href="{{ manage_bills }}" class="nav-link {% if request.path == manage_bills %} active {% endif %}">
+                <i class="far fas fa-chart-line nav-icon"></i>
+                <p>Student Bill</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'school:list_hostbill' as list_hostbill %}
+              <a href="{{ list_hostbill }}" class="nav-link {% if request.path == list_hostbill %} active {% endif %}">
+                <i class="far fas fa-chart-line nav-icon"></i>
+                <p>Cloud Server Bills</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'accounts:sales' as sales %}
+              <a href="{{ sales }}" class="nav-link {% if request.path == sales %} active {% endif %}">
+                <i class="fab fa-btc nav-icon"></i>
+                <p>Revenue</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'shop:manage_closingstock_summery' as manage_closingstock_summery %}
+              <a href="{{ manage_closingstock_summery }}" class="nav-link {% if request.path == manage_closingstock_summery %} active {% endif %}">
+                <i class="far fas fa-chart-line nav-icon"></i>
+                <p>Bakes closing Stock</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'partytree:pmanage_closingstock_summery' as pmanage_closingstock_summery %}
+              <a href="{{ pmanage_closingstock_summery }}" class="nav-link {% if request.path == pmanage_closingstock_summery %} active {% endif %}">
+                <i class="fas fa-balance-scale-right nav-icon"></i>
+                <p>PartyTree Closing Stock </p>
+              </a>
+            </li>
+
+
+
+          </ul>
+        </li>
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+{% elif group.name == 'bakerysupervisor' %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'shop:manage_order' %}" class="brand-link">
+    <img src="{% static 'dist/img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-heavy">Party Tree Bakes</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+                  with font-awesome or any other icon font library -->
+        <br>
+        <li class=bg-white class="nav-item">
+          <a href="{% url 'shop:manage_order' %}" class="nav-link ">
+            <i class="nav-icon fas fa-cog"></i>
+            <p>
+              Home
+              {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+            </p>
+          </a>
+        </li>
+        <!--<li class="nav-item">-->
+        <!--  {% url 'shop:manage_category' as manage_category %}-->
+        <!--  {% url 'shop:create_category' as create_category %}-->
+        <!--  <a href="{{ manage_category }}"-->
+        <!--    class="nav-link {% if request.path == manage_category %} active {% endif %} {% if request.path == create_category %} active {% endif %}">-->
+        <!--    <i class="nav-icon fa fa-list-alt"></i>-->
+        <!--    <p>-->
+        <!--      Manage Category-->
+        <!--    </p>-->
+        <!--  </a>-->
+        <!--</li>-->
+        <!--<li class="nav-item">-->
+        <!--  {% url 'shop:manage_product' as manage_product %}-->
+        <!--  {% url 'shop:create_product' as create_product %}-->
+        <!--  <a href="{{ manage_product }}"-->
+        <!--    class="nav-link {% if request.path == manage_product %} active {% endif %} {% if request.path == create_product %} active {% endif %}">-->
+        <!--    <i class="nav-icon fa fa-link"></i>-->
+        <!--    <p>-->
+        <!--      Manage Product-->
+        <!--    </p>-->
+        <!--  </a>-->
+        <!--</li>-->
+        <!--<li class="nav-item">-->
+        <!--  {% url 'shop:manage_restock' as manage_restock %}-->
+        <!--  {% url 'shop:create_restock' as create_restock %}-->
+        <!--  <a href="{{ manage_restock }}"-->
+        <!--    class="nav-link {% if request.path == manage_restock %} active {% endif %} {% if request.path == create_restock %} active {% endif %} ">-->
+        <!--    <i class="nav-icon fa fa-shopping-basket"></i>-->
+        <!--    <p>-->
+        <!--      Manage Restock-->
+        <!--    </p>-->
+        <!--  </a>-->
+        <!--</li>-->
+        <li class="nav-item">
+          {% url 'shop:pending_restock' as pending_restock %}
+          <a href="{{ pending_restock }}"
+            class="nav-link {% if request.path == pending_restock %} active {% endif %}">
+            <i class="nav-icon fa fa-shopping-basket"></i>
+            <p>
+              Approve Restock
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'shop:manage_damages' as manage_damages %}
+          {% url 'shop:create_damage' as create_damage %}
+          <a href="{{ manage_damages }}" class="nav-link {% if request.path == manage_damages %} active {% endif %} {% if request.path == create_damage %} active {% endif %}">
+            <i class="nav-icon fa fa-spinner"></i>
+            <p>
+              Manage Damages
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          {% url 'shop:manage_inventory' as manage_inventory %}
+          <a href="{{ manage_inventory }}" class="nav-link {% if request.path == manage_inventory %} active {% endif %} ">
+            <i class="nav-icon fa fa-industry"></i>
+            <p>
+             Manage Inventory
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'shop:manage_order' as manage_order %}
+          <a href="{{ manage_order }}"
+            class="nav-link {% if request.path == manage_order %} active {% endif %} ">
+            <i class="nav-icon fa fa-truck"></i>
+            <p>
+              Manage Orders
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          {% url 'shop:daily_saless' as daily_saless %}
+          <a href="{{ daily_saless }}" class="nav-link {% if request.path == daily_saless %} active {% endif %} ">
+            <i class="nav-icon fas fa-chart-line"></i>
+            <p>
+              Daily Sales
+            </p>
+          </a>
+        </li>
+         <li class="nav-item">
+          {% url 'shop:user_shift' as user_shift %}
+          <a href="{{ user_shift }}" class="nav-link {% if request.path == user_shift %} active {% endif %}">
+            <i class="nav-icon fa fa-cut"></i>
+            <p>User Shifts</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+{% elif group.name == 'bakerykitchen' %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'shop:manage_order' %}" class="brand-link">
+    <img src="{% static 'dist/img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-heavy">Party Tree Bakes</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+                  with font-awesome or any other icon font library -->
+        <br>
+        <li class=bg-white class="nav-item">
+          <a href="{% url 'shop:manage_restock' %}" class="nav-link ">
+            <i class="nav-icon fas fa-cog"></i>
+            <p>
+              Home
+              {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'shop:manage_restock' as manage_restock %}
+          {% url 'shop:create_restock' as create_restock %}
+          <a href="{{ manage_restock }}"
+            class="nav-link {% if request.path == manage_restock %} active {% endif %} {% if request.path == create_restock %} active {% endif %} ">
+            <i class="nav-icon fa fa-shopping-basket"></i>
+            <p>
+              Manage Restock
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'shop:manage_damages' as manage_damages %}
+          {% url 'shop:create_damage' as create_damage %}
+          <a href="{{ manage_damages }}"
+            class="nav-link {% if request.path == manage_damages %} active {% endif %} {% if request.path == create_damage %} active {% endif %}">
+            <i class="nav-icon fa fa-spinner"></i>
+            <p>
+              Manage Damages
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'shop:closed_stock' as closed_stock %}
+          <a href="{{ closed_stock }}" class="nav-link {% if request.path == closed_stock %} active {% endif %} ">
+            <i class="nav-icon fa fa-cut"></i>
+            <p>
+              Manage Closing Stock
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'shop:pending_damages' as pending_damages %}
+          <a href="{{ pending_damages }}"
+            class="nav-link {% if request.path == pending_damages %} active {% endif %} ">
+            <i class="nav-icon fa fa-spinner"></i>
+            <p>
+              Approve Damages
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'shop:pending_stock' as pending_stock %}
+          <a href="{{ pending_stock }}" class="nav-link {% if request.path == pending_stock %} active {% endif %} ">
+            <i class="nav-icon fa fa-cut"></i>
+            <p>
+              Approve Closing Stock
+            </p>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+{% elif group.name == 'bakerycashier' %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'shop:manage_order' %}" class="brand-link">
+    <img src="{% static 'dist/img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-heavy">Party Tree Bakes</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+                  with font-awesome or any other icon font library -->
+        <br>
+        <li class=bg-white class="nav-item">
+          <a href="{% url 'shop:manage_order' %}" class="nav-link ">
+            <i class="nav-icon fas fa-cog"></i>
+            <p>
+              Home
+              {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'shop:manage_order' as manage_order %}
+          <a href="{{ manage_order }}" class="nav-link {% if request.path == manage_order %} active {% endif %} ">
+            <i class="nav-icon fa fa-first-order"></i>
+            <p>
+              Manage Orders
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'shop:daily_sales' as daily_sales %}
+          <a href="{{ daily_sales }}" class="nav-link {% if request.path == daily_sales %} active {% endif %} ">
+            <i class="nav-icon fas fa-chart-line"></i>
+            <p>
+              Daily Sales
+            </p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+{% elif group.name == 'partytreesupervisor' %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'partytree:manage_order' %}" class="brand-link">
+    <img src="{% static 'dist/img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-heavy">Party Tree </span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+                  with font-awesome or any other icon font library -->
+        <br>
+        <li class=bg-white class="nav-item">
+          <a href="{% url 'partytree:manage_order' %}" class="nav-link ">
+            <i class="nav-icon fas fa-cog"></i>
+            <p>
+              Home
+              {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'partytree:manage_category' as manage_category %}
+          {% url 'partytree:create_category' as create_category %}
+          <a href="{{ manage_category }}"
+            class="nav-link {% if request.path == manage_category %} active {% endif %} {% if request.path == create_category %} active {% endif %}">
+            <i class="nav-icon fa fa-list-alt"></i>
+            <p>
+              Manage Category
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'partytree:manage_product' as manage_product %}
+          {% url 'partytree:create_product' as create_product %}
+          <a href="{{ manage_product }}"
+            class="nav-link {% if request.path == manage_product %} active {% endif %} {% if request.path == create_product %} active {% endif %}">
+            <i class="nav-icon fa fa-link"></i>
+            <p>
+              Manage Product
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'partytree:manage_restock' as manage_restock %}
+          {% url 'partytree:create_restock' as create_restock %}
+          <a href="{{ manage_restock }}"
+            class="nav-link {% if request.path == manage_restock %} active {% endif %} {% if request.path == create_restock %} active {% endif %} ">
+            <i class="nav-icon fa fa-shopping-basket"></i>
+            <p>
+              Manage Restock
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'partytree:manage_damages' as manage_damages %}
+          {% url 'partytree:create_damage' as create_damage %}
+          <a href="{{ manage_damages }}"
+            class="nav-link {% if request.path == manage_damages %} active {% endif %} {% if request.path == create_damage %} active {% endif %}">
+            <i class="nav-icon fa fa-spinner"></i>
+            <p>
+              Manage Damages
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'partytree:manage_inventory' as manage_inventory %}
+          <a href="{{ manage_inventory }}"
+            class="nav-link {% if request.path == manage_inventory %} active {% endif %} ">
+            <i class="nav-icon fa fa-industry"></i>
+            <p>
+              Manage Inventory
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'partytree:manage_order' as manage_order %}
+          <a href="{{ manage_order }}" class="nav-link {% if request.path == manage_order %} active {% endif %} ">
+            <i class="nav-icon fa fa-truck"></i>
+            <p>
+              Manage Orders
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'partytree:closed_stock' as closed_stock %}
+          <a href="{{ closed_stock }}" class="nav-link {% if request.path == closed_stock %} active {% endif %} ">
+            <i class="nav-icon fa fa-cut"></i>
+            <p>
+              Manage Closing Stock
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'partytree:daily_sales' as daily_sales %}
+          <a href="{{ daily_sales }}" class="nav-link {% if request.path == daily_sales %} active {% endif %} ">
+            <i class="nav-icon fa fa-cut"></i>
+            <p>
+              Daily Sales
+            </p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+{% elif group.name == 'partytreecashier' %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'partytree:manage_order' %}" class="brand-link">
+    <img src="{% static 'dist/img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-heavy">Party Tree</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+                  with font-awesome or any other icon font library -->
+        <br>
+        <li class=bg-white class="nav-item">
+          <a href="{% url 'partytree:manage_order' %}" class="nav-link ">
+            <i class="nav-icon fas fa-cog"></i>
+            <p>
+              Home
+              {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'partytree:manage_order' as manage_order %}
+          <a href="{{ manage_order }}" class="nav-link {% if request.path == manage_order %} active {% endif %} ">
+            <i class="nav-icon fas fa-cog"></i>
+            <p>
+              Manage Orders
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'partytree:manage_product' as manage_product %}
+          {% url 'partytree:create_product' as create_product %}
+          <a href="{{ manage_product }}"
+            class="nav-link {% if request.path == manage_product %} active {% endif %} {% if request.path == create_product %} active {% endif %}">
+            <i class="nav-icon fa fa-link"></i>
+            <p>
+              Products
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'partytree:daily_sales' as daily_sales %}
+          <a href="{{ daily_sales }}" class="nav-link {% if request.path == daily_sales %} active {% endif %} ">
+            <i class="nav-icon fa fa-cut"></i>
+            <p>
+              Daily Sales
+            </p>
+          </a><li class="nav-item">
+          {% url 'partytree:manage_inventory' as manage_inventory %}
+          <a href="{{ manage_inventory }}" class="nav-link {% if request.path == manage_inventory %} active {% endif %} ">
+            <i class="nav-icon fa fa-industry"></i>
+            <p>
+              Manage Inventory
+            </p>
+          </a>
+        </li>
+        </li>
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+{% elif group.name == 'IrishGreen' %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'salon:manage_order' %}" class="brand-link">
+    <img src="{% static 'dist/img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-heavy">Irish Green Spa</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+                  with font-awesome or any other icon font library -->
+        <br>
+        <li class=bg-white class="nav-item">
+          <a href="{% url 'salon:manage_order' %}" class="nav-link ">
+            <i class="nav-icon fas fa-cog"></i>
+            <p>
+              Home
+              {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+            </p>
+          </a>
+        </li>
+        <!--<li class="nav-item">-->
+        <!--  {% url 'salon:manage_category' as manage_category %}-->
+        <!--  {% url 'salon:create_category' as create_category %}-->
+        <!--  <a href="{{ manage_category }}"-->
+        <!--    class="nav-link {% if request.path == manage_category %} active {% endif %} {% if request.path == create_category %} active {% endif %}">-->
+        <!--    <i class="nav-icon fa fa-list-alt"></i>-->
+        <!--    <p>-->
+        <!--      Manage Category-->
+        <!--    </p>-->
+        <!--  </a>-->
+        <!--</li>-->
+        <!--<li class="nav-item">-->
+        <!--  {% url 'salon:manage_product' as manage_product %}-->
+        <!--  {% url 'salon:create_product' as create_product %}-->
+        <!--  <a href="{{ manage_product }}"-->
+        <!--    class="nav-link {% if request.path == manage_product %} active {% endif %} {% if request.path == create_product %} active {% endif %}">-->
+        <!--    <i class="nav-icon fa fa-link"></i>-->
+        <!--    <p>-->
+        <!--      Manage Product-->
+        <!--    </p>-->
+        <!--  </a>-->
+        <!--</li>-->
+        <!--<li class="nav-item">-->
+        <!--  {% url 'salon:manage_restock' as manage_restock %}-->
+        <!--  {% url 'salon:create_restock' as create_restock %}-->
+        <!--  <a href="{{ manage_restock }}"-->
+        <!--    class="nav-link {% if request.path == manage_restock %} active {% endif %} {% if request.path == create_restock %} active {% endif %} ">-->
+        <!--    <i class="nav-icon fa fa-shopping-basket"></i>-->
+        <!--    <p>-->
+        <!--      Manage Restock-->
+        <!--    </p>-->
+        <!--  </a>-->
+        <!--</li>-->
+        <!--<li class="nav-item">-->
+        <!--  {% url 'salon:pending_restock' as pending_restock %}-->
+        <!--  <a href="{{ pending_restock }}" class="nav-link {% if request.path == pending_restock %} active {% endif %}">-->
+        <!--    <i class="nav-icon fa fa-shopping-basket"></i>-->
+        <!--    <p>-->
+        <!--      Approve Restock-->
+        <!--    </p>-->
+        <!--  </a>-->
+        <!--</li>-->
+
+        <li class="nav-item">
+          {% url 'salon:manage_inventory' as manage_inventory %}
+          <a href="{{ manage_inventory }}"
+            class="nav-link {% if request.path == manage_inventory %} active {% endif %} ">
+            <i class="nav-icon fa fa-industry"></i>
+            <p>
+              Manage Inventory
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'salon:manage_order' as manage_order %}
+          <a href="{{ manage_order }}" class="nav-link {% if request.path == manage_order %} active {% endif %} ">
+            <i class="nav-icon fa fa-truck"></i>
+            <p>
+              Manage Services
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'salon:closed_stock' as closed_stock %}
+          <a href="{{ closed_stock }}" class="nav-link {% if request.path == closed_stock %} active {% endif %} ">
+            <i class="nav-icon fa fa-cut"></i>
+            <p>
+              Manage Closing Stock
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'salon:daily_sales' as daily_sales %}
+          <a href="{{ daily_sales }}" class="nav-link {% if request.path == daily_sales %} active {% endif %} ">
+            <i class="nav-icon fas fa-chart-line"></i>
+            <p>
+              Daily Sales
+            </p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+{% endif %}
+
+{% endfor %}

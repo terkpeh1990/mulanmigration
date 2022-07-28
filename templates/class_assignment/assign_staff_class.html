@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle" src=" {{students.profile_pic.url}}"
+                                alt="User profile picture">
+                        </div>
+
+                        <h3 class="profile-username text-center text-muted">{{students.Surname }} {{ students.firstname}}</h3>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>ID</b> <a class="float-right text-muted">{{students.id}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Class</b> <a class="float-right text-muted">{{students.course_id}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Gender</b> <a class="float-right text-muted">{{students.gender}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Date of Birth</b> <a class="float-right text-muted">{{students.dob}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Place of Birth</b> <a class="float-right text-muted">{{students.place_of_birth}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Nationality</b> <a class="float-right text-muted">{{students.nationality}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Religion</b> <a class="float-right text-muted">{{students.religion}}</a>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <br>
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        
+
+                        <h3 class="profile-username text-center text-muted">Assigned Classes History</h3>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            {% for a in ass_classes %}
+                            <li class="list-group-item">
+                                <b>Class</b> <a class="float-right text-muted">{{a.class_id.class_name}} --- {{a.acadamic_year.name}}</a>
+                            </li>
+                           {% endfor %}
+                        </ul>
+                        
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+               
+            </div>
+
+            <div class="col-9 ">
+
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card card-primary card-outline">
+                           
+                            <div class="card-header ">
+                                <h3 class="card-title text-dark d-flex justify-content-center">Assign Class</h3>
+                                
+                            </div>
+                            <div class="card-body">
+                                
+                                <form role="form" method="POST" enctype="multipart/form-data" novalidate>
+                                    {% csrf_token %}
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="form-group col">
+                                                {{ form.class_id|as_crispy_field }}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col">
+                                                <button type="submit" class="btn bg-primary color-palette">Submit</button>
+                                            </div>
+                                        </div>
+                                 
+                                   </div>
+                                </form>
+
+                                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="example2" class="table table-bordered table-striped table-hover" role="grid"
+                                                aria-describedby="example2_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                        aria-label="Browser: activate to sort column ascending">ID</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">Class Name</th>
+
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">Acadamic Year</th>
+                                                        
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">Status</th>
+                    
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for a in ass_classes %}
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td>{{ a.id }}</td>
+                                                        <td>{{ a.class_id.class_name }}</td>
+                                                        <td>{{a.acadamic_year.name}}</td>
+                                                        {% if a.status == "Assigned" %}
+                                                            <td><span class="badge badge-pill badge-warning">{{ a.status }}</span></td>
+                    
+                                                        {% else %}
+                                                            <td><span class="badge badge-pill badge-danger">{{ a.status }}</span></td>
+                                                        {% endif %}
+                                                        
+                                                        
+                                                        
+                    
+                                                        <td>
+                                                            
+                                                            <a class="btn btn-sm btn-primary ml-2" href="{% url 'school:unassign_class' a.id %}">Unassign</a>
+                                                        </td>
+                                                    </tr>
+                    
+                                                    {% endfor %}
+                    
+                                                </tbody>
+                                                <tfoot>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+</div>
+
+
+
+{% endblock %}

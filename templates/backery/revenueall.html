@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content%}
+
+<div class="col-lg">
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table table-bordered table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Rendering engine: activate to sort column descending">Id
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Account Code</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending">Amount</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Engine version: activate to sort column ascending">Date</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for revenue in ord %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td class="sorting_1">{{revenue.id}}</td>
+                                    <td>{{revenue.account_code}}</td>
+                                    <td>{{revenue.amount}}</td>
+                                    <td>{{revenue.created_date}}</td>
+                                    {% if revenue.account_code != 'Orders' %}
+
+                                    {% endif %}
+
+                                </tr>
+                                {% endfor %}
+                                <tr role="row" class="odd">
+                                    <td>
+                                        <b>TOTAL</b>
+                                    </td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+
+                                        <b>GH&#8373 {{ total.cc}}</b>
+
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endblock %}

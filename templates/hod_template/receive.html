@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content%}
+
+<div class="col-lg">
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <form class="">
+                <div class="form-row  ">
+                    <div class="form-group col-md-12 col-sm-12">
+                        {{ myFilter.form.student_id|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-row  ">
+                    <div class="form-group col-md-2 col-sm-12">
+                        <button class="btn btn-sm btn-primary "> Search </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+           
+            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table table-bordered table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Rendering engine: activate to sort column descending">ID
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Name</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending">Academic Year</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Engine version: activate to sort column ascending">Acadamic Term</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Engine version: activate to sort column ascending">Fees</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="CSS grade: activate to sort column ascending">Amount Paid</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="CSS grade: activate to sort column ascending">Balance</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                            aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for fess in ord %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td class="sorting_1">{{fess.student_id}}</td>
+                                    <td>{{fess.student_id.firstname}} {{fess.student_id.Surname}}</td>
+                                    <td>{{fess.session_year_id}}</td>
+                                    <td>{{fess.term_year_id}}</td>
+                                    <td>{{fess.amount}}</td>
+                                    <td>{{fess.amount_paid}}</td>
+                                    <td>{{fess.balance}}</td>
+                                    <td>
+                                        {% if fess.amount > fess.amount_paid  %}
+                                        <span><a class="btn btn-sm btn-primary"
+                                                href="{% url 'school:make_payment' fess.id %}">Pay Fees</a></span>
+                                        {% endif %}
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endblock %}

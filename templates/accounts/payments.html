@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content%}
+
+<div class="col-12">
+    
+    <div class="card card-dark card-outline  m-4 ">
+        <div class="card-header">
+            <h3 class="profile-username text-center text-muted">MULAN SMART ACTIVITY CENTER</h3>
+            <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item">
+                    <b>Date</b> <a class="float-right text-muted">{{order.transaction_date}}</a>
+                </li>
+                <li class="list-group-item">
+                    <b>Pv No.</b> <a class="float-right text-muted">{{order.id}}</a>
+                </li>
+                <li class="list-group-item">
+                    <b>Description</b> <a class="float-right text-muted">{{order.description}}</a>
+                </li>
+                
+                <li class="list-group-item">
+                    <b>Sub Code</b> <a class="float-right text-muted">{{order.sub_account.sub_code }} -- {{order.sub_account.sub_description}}</a>
+                </li>
+                <li class="list-group-item">
+                    <b>Amount</b> <a class="float-right text-muted">{{order.amount}} </a>
+                </li> 
+
+                <li class="list-group-item">
+                    <b>Payable Balance</b> <a class="float-right text-muted">{{payables.amount}}</a>
+                </li>
+            </ul>
+           
+        </div>
+        <div class="card-body">
+           
+            <div calss = "row">
+                <form role="form" method="POST" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-group col-12 col-sm-12 col-md-3">
+                                {{ form.amount_paid|as_crispy_field }}
+                            </div>
+                            <div class="form-group  col-12 col-md-9">
+                                <label for="">Sub Code </label>
+                                <input type="text" name='code' value="{{accounts.sub_description}}" list="productlist" Placeholder="Search Code.." class="form-control" required >
+                                <datalist id="productlist">
+                                    {% for code in accounts %}
+                                           <option value="{{code.sub_code}}-----{{code.sub_description}}" >
+                                    {% endfor %}
+                                </datalist>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="form-group col">
+                                <button type="submit" class="btn btn-outline-dark btn-sm">Make Payment</button>
+                            </div>
+                            
+                            
+                        </div>
+                    </div> 
+                    
+                        
+                </form>
+            </div>
+            
+
+            {% if his %}
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <h5 class ='pl-4'>All Payment Transactions</h5>
+                    <div class="col-12 col-sm-12 col-md-12 p-4">
+                        
+                        <table id="example2" class="table  table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead class="">
+                                <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">ID</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Sub Code</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Discription</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Amount</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for a in his %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>{{ a.id}}</td>
+                                    <td>{{a.reference.sub_account.sub_code }} -- {{a.reference.sub_account.sub_description}}</td>
+                                    <td>{{a.reference.description }}</td>
+                                    <td>{{ a.amount}}</td>
+                                
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+            {% else %}
+            <div class="m-4">
+                <div class="jumbotron">
+                    <div class="col-md-10 mx-auto">
+                      <p class="d-flex justify-content-center"><b>No Payment History</b></p>
+                    </div>
+                </div> 
+            </div>
+            
+            {% endif %}
+            
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endblock %}

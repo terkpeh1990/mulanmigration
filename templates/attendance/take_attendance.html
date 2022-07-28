@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content%}
+
+<div class="col-lg">
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <h3>{{attendance.adentance_date}}</h3>
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table table-bordered table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead>
+                                <tr role="row">
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Class Sudents</th>
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Attendance</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in stu %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>{{ s.Surname  }} {{ s.firstname }}</td>
+
+                                    <td >
+                                        <a id="reply_button" class="btn btn-sm btn-primary ml-3" href="{% url 'school:present' s.id attendance.id %}">Present</a>
+                                       <a id="reply_button"  class="btn btn-sm btn-danger ml-3" href="{% url 'school:absent' s.id attendance.id %}">Absent</a>
+
+                                    </td>
+
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+                            <tfoot>
+
+
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+        <div class="row">
+            <div class="form-group col">
+                <a class="btn btn-sm btn-primary " href="{% url 'school:manage_attendance' %}">Finish</a>
+            </div>
+        </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+<script>
+    $(document).ready(function () {
+
+        $(document).on("click", "#reply_button", function () {
+            //Disabling the Button while data is being saved in Server
+            $(this).attr("disabled", "disabled")
+            })
+
+
+        })
+</script>
+{% endblock %}

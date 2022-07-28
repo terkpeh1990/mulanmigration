@@ -1,0 +1,101 @@
+acad{% extends "base.html" %}
+{% block content%}
+
+<div class = 'row'>
+    <div class="col-md-3 col-sm-12">
+    
+        <!-- Profile Image -->
+        <div class="card card-dark card-outline">
+            <div class="card-body box-profile">
+                <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle" src=" {{student.profile_pic.url}}"
+                        alt="User profile picture">
+                </div>
+
+                <h3 class="profile-username text-center text-muted">{{student.Surname }} {{ student.firstname}}</h3>
+               
+
+                <ul class="list-group list-group-unbordered mb-3">
+                    <li class="list-group-item">
+                        <b>ID</b> <a class="float-right text-muted">{{student.id}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Class</b> <a class="float-right text-muted">{{student.course_id}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Gender</b> <a class="float-right text-muted">{{student.gender}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Date of Birth</b> <a class="float-right text-muted">{{student.dob}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Place of Birth</b> <a class="float-right text-muted">{{student.place_of_birth}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Nationality</b> <a class="float-right text-muted">{{student.nationality}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Religion</b> <a class="float-right text-muted">{{student.religion}}</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    
+       
+       
+    </div>
+    <div class="col-md-9 col-sm-12">
+        <div class="card card-dark card-outline">
+            <div class="card-body">
+                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="example3" class="table table-bordered table-striped table-hover" role="grid"
+                                aria-describedby="example2_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending">ID</th>
+                                    
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending">Academic Year</th>
+                                        
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending">Academic Term</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending">Action</th>
+                                       
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for acadamic in academic_term %}
+                                    </tr>
+                                    <tr role="row" class="odd">
+                                        <td>{{ acadamic.id }}</td>
+                                        <td>{{ acadamic.acadamic_years.name}}</td>
+                                        <td>{{ acadamic.acadamic_terms.name }}</td>
+                                        <td>
+                                            <a class="btn btn-sm btn-outline-dark ml-2" href="{% url 'accounts:create_bill' acadamic.id student.id %}">Select</a>
+    
+                                        </td>
+                                                     
+                                    </tr>
+    
+                                    {% endfor %}
+    
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.card -->
+    </div>
+</div>
+
+{% endblock %}

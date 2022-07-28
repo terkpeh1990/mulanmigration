@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="col-9 mx-auto novalidate">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg">
+                    <div class="card ">
+                        <div class="card-header bg-primary color-palette">
+                            <h3 class="card-title">Parent Details</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form role="form" method="POST" enctype="multipart/form-data" novalidate>
+                            {% csrf_token %}
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group col">
+                                        {{ form.father_name|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col">
+                                        {{ form.father_occupation|as_crispy_field }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col">
+                                        {{ form.father_tel|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col">
+                                        {{ form.father_phone|as_crispy_field }}
+                                    </div>
+                            
+                                    <div class="form-group col">
+                                        {{ form.fsilent|as_crispy_field }}
+                                    </div>
+                                </div>
+                            
+                                <div class="row">
+                                    <div class="form-group col">
+                                        {{ form.father_email|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col">
+                                        {{ form.frelationship|as_crispy_field }}
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col">
+                                    {{ form.mother_name|as_crispy_field }}
+                                </div>
+                                <div class="form-group col">
+                                    {{ form.mother_occupation|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    {{ form.mother_tel|as_crispy_field }}
+                                </div>
+                                <div class="form-group col">
+                                    {{ form.mother_phone|as_crispy_field }}
+                                </div>
+
+                                <div class="form-group col">
+                                    {{ form.msilent|as_crispy_field }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col">
+                                    {{ form.mother_email|as_crispy_field }}
+                                </div>
+                                <div class="form-group col">
+                                    {{ form.mrelationship|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    <button type="submit" class="btn bg-primary color-palette">Submit</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+{% endblock %}

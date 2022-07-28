@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content%}
+<div class="row">
+    <div class="col-6">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="profile-username text-center text-muted">Mulan Smart Activity Center Bill</h3>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Student Name.</b> <a class="float-right text-muted">{{bills.student_id.Surname }} {{  bills.student_id.firstname}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Class</b> <a class="float-right text-muted">{{bills.student_id.course_id.class_name}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Type of Bill</b> <a class="float-right text-muted">{{bills.billing_type.name}}</a>
+                            </li>
+                          
+                    
+                            <li class="list-group-item">
+                                <b>Date</b> <a class="float-right text-muted">{{bills.bill_date}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped table-sm" id="my_friends">
+                            <thead>
+                                <tr>
+                                    <th>Bill Items</th>
+                                    <th>Amount</th>
+                                    
+                                    <th>Action</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in detail %}
+                                <tr>
+                                    <td>{{item.description}}</td>
+                                    <td>{{item.amount}}</td>
+                                    
+                                    <td>
+                                        <a href="{% url 'school:delete_bill_item' item.id %}">Remove</a>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+
+                                    <td></td>
+                                    
+                                    <td><b>Total</b></td>
+                                    <td><b>{{bills.total}}</b> </td>
+
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                        <div class="row">
+
+                           
+                            <div class="col ">
+                                <a class="btn btn-primary mt-2" href="{% url 'school:Billitems' %}">Check Cost</a>
+
+                            </div>
+                            
+
+
+
+
+                            <div class="col ">
+                                <a class="btn btn-danger mt-2 ml-2" href="{% url 'school:close_bill' %}">Close</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <form id="friend-form" method="post" novalidate>
+                        {% csrf_token %}
+                        <div class="card card-primary card-outline">
+                            <div class="card-body">
+                                <div class="form-group ">
+                                    {% for hidden_field in form.hidden_fields %}
+                                    {{ hidden_field }}
+                                    {% endfor %}
+
+                                    <div class=" col-md-4 mx-auto">
+                                        {% if form.non_field_errors %}
+                                        <div class="alert alert-danger" role="alert">
+                                            {% for error in form.non_field_errors %}
+                                            {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-8">
+                                            {{ form.description|as_crispy_field }}
+                                        </div>
+                                        <div class="form-group col">
+                                            {{ form.amount|as_crispy_field }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="col text-center">
+                                            <button class="btn btn-primary" value="Create Friend">Add Bill Item</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script>
+    /*
+        On submiting the form, send the POST ajax
+        request to server and after successfull submission
+        display the object.
+    */
+    $("#friend-form").submit(function (e) {
+        // preventing from page reload and default actions
+        e.preventDefault();
+        // serialize the data for sending the form data.
+        var serializedData = $(this).serialize();
+        // make POST ajax call
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'school:Billitems' %}",
+            data: serializedData,
+            success: function (response) {
+                // on successfull creating object
+                // 1. clear the form.
+                $("#friend-form").trigger('reset');
+                // 2. focus to nickname input
+                $("#id_name").focus();
+
+                // display the newly friend to table.
+                var instance = JSON.parse(response["instance"]);
+                var fields = instance[0]["fields"];
+                $("#my_friends tbody").prepend(
+                    `<tr>
+                   <td>${fields["description"] || ""}</td>
+                   <td>${fields["amount"] || ""}</td>
+                   
+                   </tr>`
+
+                )
+            },
+            error: function (response) {
+                // alert the error if any error occured
+                alert(response["responseJSON"]["error"]);
+            }
+        })
+    });
+
+</script>
+{% endblock %}

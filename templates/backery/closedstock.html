@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content%}
+
+<div class="col-12">
+    <div class="card card-primary card-outline ">
+        <div class="card-body">
+             {% for group in user.groups.all %} {% if group.name == 'principal' %}
+                <!--<a class="btn btn-danger btn-sm mb-1" href="{% url 'shop:clear_closing' %}">Clear Closing Stock</a>-->
+             {% endif %}
+             {% endfor %}
+
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table  table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead class="">
+                                <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">ID</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Closing Date</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Product Name</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Closing Stock</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Stock Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for stock in close_stock %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>{{ stock.id }}</td>
+                                    <td>{{ stock.closing_stock_date }}</td>
+                                    <td>{{ stock.product.name}}</td>
+                                    <td>{{ stock.closing_stock}}</td>
+                                    <td>{{ stock.avialable_stock_cost}}</td>
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endblock %}

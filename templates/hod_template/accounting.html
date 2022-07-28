@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-chart-line"></i></span>
+    
+            <div class="info-box-content">
+                <span class="info-box-text">Cash Revenue</span>
+                <span class="info-box-number">GH&#8373 {{total_revenue.total_revenue}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3">
+         <div class="info-box">
+        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-balance-scale-left"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Cash Expenditure</span>
+                <span class="info-box-number">GH&#8373 {{total_expenditure.total_expenditure}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix hidden-md-up"></div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box">
+        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-dollar-sign"></i></span>
+    
+            <div class="info-box-content">
+                <span class="info-box-text">Available Cash</span>
+                <span class="info-box-number">GH&#8373 {{expected_cash}}</span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        </div>
+     <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+                <span class="info-box-icon bg-olive elevation-1"><i class="fas fa-thumbs-up"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Approved PV's</span>
+                    <span class="info-box-number">GH&#8373 {{total_approved.cc}}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+        <!-- /.info-box -->
+    </div>
+    </div>
+   
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-info card-outline">
+            <div class="card-header">
+                Pending PV'S
+            </div>
+            <div class="card-body">
+                <table id="example5" class="table  table-striped table-hover" role="grid"
+                    aria-describedby="example2_info">
+                    <thead class="">
+                        <tr role="row">
+
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Browser: activate to sort column ascending">Description</th>
+
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Browser: activate to sort column ascending">Total Amount</th>
+
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Platform(s): activate to sort column ascending">Status</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Platform(s): activate to sort column ascending">Date Created</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="CSS grade: activate to sort column ascending">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in pending_pv %}
+                        </tr>
+                        <tr role="row" class="odd">
+                            <td>{{ p.description }}</td>
+                            <td>{{ p.amount }}</td>
+
+                            {% if p.status == 'pending' %}
+                            <td><span class="badge bg-warning">{{p.status}}</span></td>
+                            {% elif p.status == 'approved' %}
+                            <td><span class="badge bg-primary">{{p.status}}</span></td>
+                            {% else %}
+                            <td><span class="badge bg-danger">{{p.status}}</span></td>
+                            {% endif %}
+
+                            <td>{{ p.created_date }}</td>
+                            <td>
+
+                                <a class="btn btn-sm btn-success" href="{% url 'school:view_pv' p.id %}">View</a>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                Aproved PV'S
+            </div>
+            <div class="card-body">
+                <table id="example4" class="table  table-striped table-hover" role="grid"
+                    aria-describedby="example2_info">
+                    <thead class="">
+                        <tr role="row">
+
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Browser: activate to sort column ascending">Description</th>
+
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Browser: activate to sort column ascending">Total Amount</th>
+
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Platform(s): activate to sort column ascending">Status</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Platform(s): activate to sort column ascending">Date Created</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="CSS grade: activate to sort column ascending">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in approved_pv %}
+                        </tr>
+                        <tr role="row" class="odd">
+                            <td>{{ p.description }}</td>
+                            <td>{{ p.amount }}</td>
+
+                            {% if p.status == 'pending' %}
+                            <td><span class="badge bg-warning">{{p.status}}</span></td>
+                            {% elif p.status == 'approved' %}
+                            <td><span class="badge bg-primary">{{p.status}}</span></td>
+                            {% else %}
+                            <td><span class="badge bg-danger">{{p.status}}</span></td>
+                            {% endif %}
+
+                            <td>{{ p.created_date }}</td>
+                            <td>
+
+                                <a class="btn btn-sm btn-success" href="{% url 'school:view_pv' p.id %}">View</a>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+   
+
+</div>
+
+
+
+{% endblock %}

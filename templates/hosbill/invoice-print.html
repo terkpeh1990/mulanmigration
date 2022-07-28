@@ -1,0 +1,255 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tcode, Inc. </title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'fontawesome-free/css/all.min.css' %}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="{% static 'tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{% static 'icheck-bootstrap/icheck-bootstrap.min.css' %}">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="{% static 'jqvmap/jqvmap.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css'  %}">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{% static 'overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{% static 'daterangepicker/daterangepicker.css' %}">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{% static 'summernote/summernote-bs4.css' %}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- datatable -->
+    <link rel="stylesheet" href="{% static 'datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+
+
+</head>
+
+<body class="sidebar-mini layout-navbar-fixed">
+    <div class="wrapper">
+
+        <div class="content-wrapper">
+            <div class="content-header">
+                <div class="container-fluid">
+
+                </div><!-- /.container-fluid -->
+            </div>
+            <div class="content">
+
+                <div class="container-fluid">
+
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Invoice</h1>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+
+                            <!-- Main content -->
+                            <div class="invoice p-3 mb-3">
+                                <!-- title row -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h4>
+                                            <i class="fas fa-globe"></i> Tcode, Inc.
+                                            <small class="float-right">Date: {{hostord.order_date}}</small>
+                                        </h4>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- info row -->
+                                <div class="row invoice-info">
+                                    <div class="col-sm-4 invoice-col">
+                                        From
+                                        <address>
+                                            <strong>Tcode, Inc.</strong><br>
+                                            P.o.Box DC 25,<br>
+                                            Dansoman, Accra.<br>
+                                            Phone: (233) 0244409023<br>
+                                            Email: terkpeh1990@gmail.com
+                                        </address>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-sm-4 invoice-col">
+                                        To
+                                        <address>
+                                            <strong>{{hostord.customer}}</strong><br>
+                                            East Legon – Adjiringano gate road,<br>
+                                            Accra - Ghana.<br>
+                                            Phone: (233) 302985321<br>
+                                            Email: info@msac.edu.gh<br>
+                                        </address>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-sm-4 invoice-col">
+                                        <b>Invoice #000{{hostord.id}}</b><br>
+                                        <br>
+                                        <b>Order ID:</b> {{hostord.id}}<br>
+                                        <b>Payment Due:</b> {{hostord.due_date}}<br>
+
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+
+                                <!-- Table row -->
+                                <div class="row">
+                                    <div class="col-12 table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Item</th>
+                                                    <th>Product</th>
+                                                    <th>Description</th>
+                                                    <th>Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for item in details %}
+                                                <tr>
+                                                    <td>{{item.id}}</td>
+                                                    <td>{{item.product}}</td>
+                                                    <td>{{item.description}}</td>
+                                                    <td>GHC {{item.unit_price}}</td>
+                                                </tr>
+                                                {% endfor %}
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+
+                                <div class="row">
+                                    <!-- accepted payments column -->
+                                    <div class="col-6">
+                                        <b>
+                                            <p class="lead">Payment Methods:</p>
+
+
+                                            <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                                                All payments should be made to the bank details below:- <br> <br>
+                                                Name:- Richard Terkpeh Mensah <br>
+                                                Bank:- Access Bank. <br>
+                                                Acc No:- 0091622981741. <br>
+                                                Branch:- Castle Road.
+                                            </p>
+                                        </b>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-6">
+                                        <p class="lead">Amount Due {{hostord.due_date}}</p>
+
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tr>
+                                                    <th style="width:50%">Subtotal:</th>
+                                                    <td>GHC {{hostord.total_price}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Tax (0.0%)</th>
+                                                    <td>GHC 0.0</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>Total:</th>
+                                                    <td>GHC {{hostord.total_price}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+
+                                <!-- this row will not appear when printing -->
+
+                            </div>
+                            <!-- /.invoice -->
+                        </div><!-- /.col -->
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+
+
+<!-- jQuery -->
+<script src="{% static " jquery/jquery.min.js" %}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{% static " jquery-ui/jquery-ui.min.js" %}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="{% static " bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+<!-- ChartJS -->
+<script src="{% static " chart.js/Chart.min.js" %}"></script>
+<!-- Sparkline -->
+<script src="{% static " sparklines/sparkline.js" %}"></script>
+<!-- JQVMap -->
+<script src="{% static " jqvmap/jquery.vmap.min.js" %}"></script>
+<script src="{% static " jqvmap/maps/jquery.vmap.usa.js" %}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{% static " jquery-knob/jquery.knob.min.js" %}"></script>
+<!-- daterangepicker -->
+<script src="{% static " moment/moment.min.js" %}"></script>
+<script src="{% static " daterangepicker/daterangepicker.js" %}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{% static " tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js" %}"></script>
+<!-- Summernote -->
+<script src="{% static " summernote/summernote-bs4.min.js" %}"></script>
+<!-- overlayScrollbars -->
+<script src="{% static " overlayScrollbars/js/jquery.overlayScrollbars.min.js" %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'dist/js/adminlte.js'  %}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{% static 'dist/js/pages/dashboard.js'  %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'dist/js/demo.js'  %}"></script>
+
+<!-- Data table -->
+<script src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'jszip/jszip.min.js' %}"></script>
+<script src="{% static 'pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+<script>
+    window.addEventListener("load", window.print());
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content%}
+
+<div class="col-lg">
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <a class="btn btn-outline-primary btn-sm mb-1" href="{% url 'school:add_parent' %}">Add Parent</a>
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table table-bordered table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Rendering engine: activate to sort column descending">ID
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Father's Name</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending"> Contact</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Engine version: activate to sort column ascending">Mother's Name</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Engine version: activate to sort column ascending">Contact</th>
+                                   
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for parent in parent_list %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td class="sorting_1">{{parent.id}}</td>
+                                    <td>{{parent.father_name}}</td>
+                                    <td>{{parent.father_phone}}</td>
+                                    <td>{{parent.mother_name}}</td>
+                                    <td>{{parent.mother_phone}}</td>
+                                    <td>
+                                      <a class="btn btn-sm btn-warning" href="{% url 'school:edit_parent' parent.id %}">Edit</a>
+                                    <a class="btn btn-sm btn-danger" href="{% url 'school:delete_parent' parent.id %}">Delete</a>
+                                    <a class="btn btn-sm btn-primary" href="{% url 'school:add_student' parent.id %}">Add Student</a>
+                                    </td>
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+<div class="row">
+    <div class="col-lg">
+        <div class="row ">
+         
+            
+            <!-- fix for small devices only -->
+            <div class="clearfix hidden-md-up"></div>
+            
+           
+        </div>
+        <div class="card  card-dark card-outline p-4 m-4">
+            <div class="ml-4 mr-4 ">
+                {% comment %} <form action="" method="Get" novalidate>
+                    <div class="form-row ">
+                        <div class="form-group col-12 col-sm-12 col-md-6">
+                            {{ myFilter.form.start_date|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-12 col-sm-12 col-md-6">
+                            {{ myFilter.form.end_date|as_crispy_field }}
+                        </div>
+                        
+                       
+                    </div>
+                    <div class="mb-2">
+                        <button class="btn btn-dark">
+                            <span class="">Filter</span>
+                            <i class="fas fa-search pl-3"></i>
+                        </button>
+                    </div>
+                </form> {% endcomment %}
+            </div>
+            <div class="card-body">
+                
+               
+                
+                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="example3" class="table  table-striped table-hover" role="grid"
+                                aria-describedby="example2_info">
+                                <thead class="">
+                                    <tr role="row">
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending">Bill No</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending">Date</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending">Academic Year</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending">Academic Term</th>
+                                       
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending">Student</th>
+                                        
+                                        
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending">Action</th>
+                                       
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for a in bills %}
+                                    </tr>
+                                    <tr role="row" class="odd">
+                                        <td>{{ a.id }}</td>
+                                        <td>{{ a.bill_date}}</td>
+                                        <td>{{a.session_year_id.name }}</td>
+                                        <td>{{a.term_year_id}}</td>
+                                        <td>{{a.student_id.Surname }} {{ a.student_id.firstname}}</td>
+                                        
+                                        <td>
+                                           
+                                                <a class="btn btn-sm btn-outline-primary"
+                                                href="{% url 'accounts:view_student_bill' a.id %}">View</a>
+                                                
+                                           
+                                           
+                                            
+                                            
+
+                                        </td>
+
+                                        
+                                        
+
+                                        
+                                    </tr>
+    
+                                    {% endfor %}
+    
+                                </tbody>
+    
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> 
+{% endblock %}

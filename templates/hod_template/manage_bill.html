@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content%}
+
+<div class="col-12">
+    <div class="card card-primary card-outline ">
+        <div class="card-body">
+            {% for group in user.groups.all %} {% if group.name == 'account' %}
+            <a class="btn btn-primary btn-sm mb-1" href="{% url 'school:create_bill' %}">Create Bill</a>
+            {% endif %}
+            {% endfor %}
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example3" class="table  table-striped table-hover" role="grid"
+                            aria-describedby="example2_info">
+                            <thead class="">
+                                <tr role="row">
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Academic Year</th>
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Academic Term Name</th>
+
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending">Class</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending">Bill Date</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for b in bill %}
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>{{ b.session_year_id }}</td>
+                                    <td>{{ b.term_year_id }}</td>
+                                    <td>{{ b.class_id.class_name }}</td>
+                                    <td>{{ b.bill_date}}</td>
+
+
+                                {% for group in user.groups.all %} {% if group.name == 'parent' %}
+                                    <td>
+
+                                        <a class="btn btn-sm btn-success" href="{% url 'school:view_bill' b.id %}">View</a>
+                                    </td>
+                                {% else %}
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="{% url 'school:add_bill' b.id %}">Add Bill</a>
+                                    <a class="btn btn-sm btn-success" href="{% url 'school:view_bill' b.id %}">View</a>
+                                </td>
+                                {% endif %}
+                                {% endfor %}
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.card -->
+</div>
+{% endblock %}

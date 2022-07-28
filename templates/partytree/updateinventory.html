@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+
+                        <h3 class="profile-username text-center text-muted">{{product_inventory.product_id.name}}
+                        </h3>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Instock</b> <a class="float-right text-muted">{{product_inventory.instock}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Outstock</b> <a class="float-right text-muted">{{product_inventory.outgoing}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Avialable Stock</b> <a
+                                    class="float-right text-bold">{{product_inventory.avialable_stock}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Avialable Stock Value</b> <a
+                                    class="float-right text-bold">{{product_inventory.avialable_stock_cost}}</a>
+                            </li>
+
+                        </ul>
+                        <a class="btn btn-sm  btn-primary btn-block" href="{% url 'partytree:manage_inventory'  %}">Close</a>
+                        <div class="form-group col">
+
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <!-- About Me Box -->
+
+                <!-- /.card -->
+            </div>
+
+            <div class="col-9 ">
+
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card ">
+                            <div class="card-header card-primary card-outline">
+                                <h3 class="card-title">Inventory</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form role="form" method="POST" enctype="multipart/form-data" novalidate>
+                                {% csrf_token %}
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-group col">
+                                            {{ form.quantity|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col">
+                                            <button type="submit" class="btn bg-primary color-palette">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,193 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class='row'>
+    <div class="col-md-3 col-sm-12">
+    
+        <!-- Profile Image -->
+        <div class="card card-dark card-outline">
+            <div class="card-body box-profile">
+                <div class="text-center mb-2">
+                    <img class="profile-user-img img-fluid img-circle" src=" {% static 'images/msac-logo.png' %}"
+                        alt="User profile picture">
+                </div>
+               
+    
+                {% comment %} <h3 class="profile-username text-center">{{{ accounts.code }}</h3> {% endcomment %}
+                <ul class="list-group list-group-unbordered mb-3">
+                    <li class="list-group-item">
+                        <b>Code</b> <a class="float-right">{{accounts.code}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Discription</b> <a class="float-right">{{accounts.description}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Total Sub Accounts</b> <a class="float-right">{{total_sub_accounts}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Last Code</b> <a class="float-right">{{last_sub_accounts_code}}</a>
+                    </li>
+                   
+                </ul>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    
+       
+       
+    </div>
+    <div class="col-md-9 col-sm-12 novalidate">
+        
+        <div class="row">
+                    <div class="col-lg">
+                        <div class="card card-dark card-outline">
+                            <div class="card-header">
+                                <h3 class="card-title">Sub Accounts</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form role="form" method="POST" enctype="multipart/form-data" novalidate>
+                                {% csrf_token %}
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-group col-12 col-sm-12 col-md-3">
+                                            
+                                            {{ form.sub_code|as_crispy_field }}
+                                        </div>
+                                        <div class="form-group col-12 col-sm-12 col-md-6">
+                                            {{ form.sub_description|as_crispy_field }}
+                                        </div>
+                                        <div class="form-group col-12 col-sm-12 col-md-3">
+                                            {{ form.tag|as_crispy_field }}
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    
+                                    <div class="row">
+                                        <div class="form-group col">
+                                            <button type="submit" class="btn btn-outline-dark btn-sm">Submit</button>
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col ">
+                                        </div>
+                                        <div class="form-group col float-left">
+                                           
+                                         <a class="btn btn-outline-dark btn-sm"href="{% url 'accounts:manage_accounts' %}"><i class="fas fa-arrow-left"></i></a>
+                                           
+                                            
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </div> 
+                                
+                                    
+                            </form>
+
+                            <br>
+                            
+                            {% if sub_accounts %}
+                            <div class="m-4">
+                                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="example2" class="table   table-hover" role="grid"
+                                                aria-describedby="example2_info">
+                                                <thead class="">
+                                                    <tr role="row">
+                    
+                                                        
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">Sub Code</th>
+                                                        
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">Description</th>
+                                                        
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">Tag</th>
+                                                        
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for a in sub_accounts %}
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        
+                                                        <td>
+                                                            
+                                                            {{a.sub_code}}
+                                                        </td>
+                                                        <td>{{ a.sub_description}}</td>
+                                                        <td>{{ a.tag}}</td>
+                                                        
+                                                        
+                                                        
+                                                        <td>
+
+                                                            
+                                                            
+                                                            <a class="btn btn-sm btn-outline-warning"
+                                                                href="{% url 'accounts:edit_sub_accounts' a.id %}">Update</a>
+
+                                                        </td>
+                                                    </tr>
+                    
+                                                    {% endfor %}
+                    
+                                                </tbody>
+                    
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="m-4">
+                                <div class="jumbotron">
+                                    <div class="col-md-10 mx-auto">
+                                      <p class="d-flex justify-content-center"><b>No Sub Codes Information</b></p>
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                                
+                            {% endif %}
+                                
+                            
+                            
+                            
+
+                            
+                        </div>
+                   </div>           
+    
+        </div>
+    
+    </div>
+
+</div>
+{% endblock %}
+
+
+
